@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - TechViet</title>
+    <meta name="description" content="Tìm hiểu về TechViet - Công ty công nghệ hàng đầu Việt Nam">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-rocket"></i> TechViet</h1>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="about.html" class="active">Giới thiệu</a></li>
+                    <li><a href="services.html">Dịch vụ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                
+                <!-- Mobile menu toggle -->
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Về TechViet</h1>
+                <nav class="breadcrumb">
+                    <a href="index.html">Trang chủ</a> / Giới thiệu
+                </nav>
+            </div>
+        </section>
+
+        <!-- About Content -->
+        <section class="about-content">
+            <div class="container">
+                <div class="about-intro">
+                    <h2>Câu chuyện của chúng tôi</h2>
+                    <p class="lead">
+                        TechViet được thành lập vào năm 2014 với sứ mệnh mang lại những giải pháp 
+                        công nghệ tiên tiến nhất cho các doanh nghiệp Việt Nam. Chúng tôi tin rằng 
+                        công nghệ là chìa khóa để mở ra tương lai tươi sáng.
+                    </p>
+                </div>
+
+                <div class="about-sections">
+                    <article class="about-section">
+                        <div class="section-content">
+                            <h3><i class="fas fa-eye"></i> Tầm nhìn</h3>
+                            <p>
+                                Trở thành công ty công nghệ hàng đầu khu vực Đông Nam Á, 
+                                tiên phong trong việc ứng dụng các công nghệ mới nhất như 
+                                AI, IoT, và Blockchain vào thực tiễn kinh doanh.
+                            </p>
+                        </div>
+                        <div class="section-visual">
+                            <canvas id="visionCanvas" width="300" height="200"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="about-section reverse">
+                        <div class="section-visual">
+                            <canvas id="missionCanvas" width="300" height="200"></canvas>
+                        </div>
+                        <div class="section-content">
+                            <h3><i class="fas fa-bullseye"></i> Sứ mệnh</h3>
+                            <p>
+                                Cung cấp các giải pháp công nghệ đổi mới, giúp khách hàng 
+                                tối ưu hóa quy trình kinh doanh, nâng cao hiệu quả và 
+                                tạo ra giá trị bền vững cho xã hội.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="about-section">
+                        <div class="section-content">
+                            <h3><i class="fas fa-heart"></i> Giá trị cốt lõi</h3>
+                            <ul class="values-list">
+                                <li><strong>Đổi mới:</strong> Luôn tìm kiếm và áp dụng những công nghệ mới nhất</li>
+                                <li><strong>Chất lượng:</strong> Cam kết mang lại sản phẩm và dịch vụ tốt nhất</li>
+                                <li><strong>Tận tâm:</strong> Đặt khách hàng làm trung tâm của mọi hoạt động</li>
+                                <li><strong>Trách nhiệm:</strong> Góp phần xây dựng một xã hội số bền vững</li>
+                            </ul>
+                        </div>
+                        <div class="section-visual">
+                            <canvas id="valuesCanvas" width="300" height="200"></canvas>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <h2 class="section-title">Đội ngũ lãnh đạo</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h4>Nguyễn Văn A</h4>
+                        <p class="position">CEO & Founder</p>
+                        <p class="bio">15 năm kinh nghiệm trong lĩnh vực công nghệ, từng làm việc tại Google và Microsoft.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h4>Trần Thị B</h4>
+                        <p class="position">CTO</p>
+                        <p class="bio">Chuyên gia về AI và Machine Learning, có hơn 12 năm kinh nghiệm phát triển sản phẩm.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <h4>Lê Minh C</h4>
+                        <p class="position">Head of Operations</p>
+                        <p class="bio">Chuyên gia về quản lý dự án và vận hành, đảm bảo chất lượng dịch vụ khách hàng.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="container">
+                <h2 class="section-title">Lịch sử phát triển</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2014</div>
+                        <div class="timeline-content">
+                            <h4>Thành lập công ty</h4>
+                            <p>TechViet được thành lập với 5 thành viên sáng lập tại TP.HCM</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2016</div>
+                        <div class="timeline-content">
+                            <h4>Mở rộng thị trường</h4>
+                            <p>Phát triển thành công 50+ dự án và mở văn phòng tại Hà Nội</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-content">
+                            <h4>Đầu tư AI & IoT</h4>
+                            <p>Bắt đầu nghiên cứu và phát triển các giải pháp AI và IoT</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-content">
+                            <h4>Mở rộng quốc tế</h4>
+                            <p>Thiết lập quan hệ đối tác với các công ty công nghệ khu vực</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <h4>Hướng tới tương lai</h4>
+                            <p>Tiếp tục đổi mới và phát triển bền vững</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-rocket"></i> TechViet</h3>
+                    <p>Đối tác tin cậy trong chuyển đổi số của doanh nghiệp</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Dịch vụ</h4>
+                    <ul>
+                        <li><a href="services.html">Phát triển web</a></li>
+                        <li><a href="services.html">Ứng dụng mobile</a></li>
+                        <li><a href="services.html">Cloud computing</a></li>
+                        <li><a href="services.html">AI & Machine Learning</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Công ty</h4>
+                    <ul>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone"></i> +84 901 234 567</p>
+                        <p><i class="fas fa-envelope"></i> info@techviet.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechViet. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/canvas-module.js"></script>
+    <script src="js/storage-module.js"></script>
+</body>
+</html>

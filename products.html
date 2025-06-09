@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - TechViet</title>
+    <meta name="description" content="Khám phá các sản phẩm công nghệ tiên tiến của TechViet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-rocket"></i> TechViet</h1>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="services.html">Dịch vụ</a></li>
+                    <li><a href="products.html" class="active">Sản phẩm</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                
+                <!-- Mobile menu toggle -->
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Sản phẩm của chúng tôi</h1>
+                <nav class="breadcrumb">
+                    <a href="index.html">Trang chủ</a> / Sản phẩm
+                </nav>
+            </div>
+        </section>
+
+        <!-- Product Categories Filter -->
+        <section class="product-filters">
+            <div class="container">
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-category="all">Tất cả</button>
+                    <button class="filter-btn" data-category="software">Phần mềm</button>
+                    <button class="filter-btn" data-category="platform">Nền tảng</button>
+                    <button class="filter-btn" data-category="mobile">Mobile App</button>
+                    <button class="filter-btn" data-category="iot">IoT Device</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-grid">
+            <div class="container">
+                <!-- Software Products -->
+                <article class="product-card" data-category="software">
+                    <div class="product-image">
+                        <canvas class="product-canvas" width="300" height="200" data-product="erp"></canvas>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Phần mềm</div>
+                        <h3>TechViet ERP</h3>
+                        <p>Hệ thống quản lý tài nguyên doanh nghiệp toàn diện, tích hợp AI để tối ưu hóa quy trình</p>
+                        <div class="product-features">
+                            <span class="feature-tag">AI-Powered</span>
+                            <span class="feature-tag">Cloud-based</span>
+                            <span class="feature-tag">Real-time</span>
+                        </div>
+                        <div class="product-price">Liên hệ để báo giá</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Demo</a>
+                            <a href="contact.html" class="btn btn-secondary">Liên hệ</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Platform Products -->
+                <article class="product-card" data-category="platform">
+                    <div class="product-image">
+                        <canvas class="product-canvas" width="300" height="200" data-product="ecommerce"></canvas>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Nền tảng</div>
+                        <h3>TechViet Commerce</h3>
+                        <p>Nền tảng thương mại điện tử đa kênh với tích hợp thanh toán và quản lý kho hàng thông minh</p>
+                        <div class="product-features">
+                            <span class="feature-tag">Multi-channel</span>
+                            <span class="feature-tag">Mobile-first</span>
+                            <span class="feature-tag">Scalable</span>
+                        </div>
+                        <div class="product-price">Từ 5,000,000 VND/tháng</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Demo</a>
+                            <a href="contact.html" class="btn btn-secondary">Liên hệ</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Mobile App Products -->
+                <article class="product-card featured" data-category="mobile">
+                    <div class="product-badge">Bán chạy</div>
+                    <div class="product-image">
+                        <canvas class="product-canvas" width="300" height="200" data-product="delivery"></canvas>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Mobile App</div>
+                        <h3>TechViet Delivery</h3>
+                        <p>Ứng dụng giao hàng thông minh với AI routing và tracking thời gian thực</p>
+                        <div class="product-features">
+                            <span class="feature-tag">GPS Tracking</span>
+                            <span class="feature-tag">AI Routing</span>
+                            <span class="feature-tag">Real-time</span>
+                        </div>
+                        <div class="product-price">Từ 2,000,000 VND/tháng</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Demo</a>
+                            <a href="contact.html" class="btn btn-secondary">Liên hệ</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- IoT Products -->
+                <article class="product-card" data-category="iot">
+                    <div class="product-image">
+                        <canvas class="product-canvas" width="300" height="200" data-product="smart-home"></canvas>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">IoT Device</div>
+                        <h3>TechViet Smart Home</h3>
+                        <p>Hệ thống nhà thông minh với điều khiển giọng nói và học máy để tối ưu năng lượng</p>
+                        <div class="product-features">
+                            <span class="feature-tag">Voice Control</span>
+                            <span class="feature-tag">Energy Saving</span>
+                            <span class="feature-tag">ML-powered</span>
+                        </div>
+                        <div class="product-price">Từ 15,000,000 VND</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Demo</a>
+                            <a href="contact.html" class="btn btn-secondary">Liên hệ</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Software Products -->
+                <article class="product-card" data-category="software">
+                    <div class="product-image">
+                        <canvas class="product-canvas" width="300" height="200" data-product="analytics"></canvas>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Phần mềm</div>
+                        <h3>TechViet Analytics</h3>
+                        <p>Nền tảng phân tích dữ liệu lớn với machine learning và visualization tương tác</p>
+                        <div class="product-features">
+                            <span class="feature-tag">Big Data</span>
+                            <span class="feature-tag">Machine Learning</span>
+                            <span class="feature-tag">Interactive</span>
+                        </div>
+                        <div class="product-price">Từ 8,000,000 VND/tháng</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Demo</a>
+                            <a href="contact.html" class="btn btn-secondary">Liên hệ</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Platform Products -->
+                <article class="product-card" data-category="platform">
+                    <div class="product-image">
+                        <canvas class="product-canvas" width="300" height="200" data-product="learning"></canvas>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-category">Nền tảng</div>
+                        <h3>TechViet Learning</h3>
+                        <p>Nền tảng đào tạo trực tuyến với AI personalizedlearning và virtual classroom</p>
+                        <div class="product-features">
+                            <span class="feature-tag">AI Personalized</span>
+                            <span class="feature-tag">Virtual Reality</span>
+                            <span class="feature-tag">Gamification</span>
+                        </div>
+                        <div class="product-price">Từ 3,000,000 VND/tháng</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn btn-primary">Demo</a>
+                            <a href="contact.html" class="btn btn-secondary">Liên hệ</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Product Comparison Section -->
+        <section class="product-comparison-section">
+            <div class="container">
+                <h2 class="section-title">So sánh sản phẩm</h2>
+                <div class="comparison-container">
+                    <div class="comparison-selector">
+                        <div class="selector-group">
+                            <label for="product1">Chọn sản phẩm 1:</label>
+                            <select id="product1" class="product-selector">
+                                <option value="">-- Chọn sản phẩm --</option>
+                                <option value="erp">TechViet ERP</option>
+                                <option value="ecommerce">TechViet Commerce</option>
+                                <option value="delivery">TechViet Delivery</option>
+                                <option value="analytics">TechViet Analytics</option>
+                            </select>
+                        </div>
+                        <div class="selector-group">
+                            <label for="product2">Chọn sản phẩm 2:</label>
+                            <select id="product2" class="product-selector">
+                                <option value="">-- Chọn sản phẩm --</option>
+                                <option value="erp">TechViet ERP</option>
+                                <option value="ecommerce">TechViet Commerce</option>
+                                <option value="delivery">TechViet Delivery</option>
+                                <option value="analytics">TechViet Analytics</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="comparison-chart">
+                        <canvas id="productComparisonCanvas" width="600" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Demo Section -->
+        <section class="product-demo">
+            <div class="container">
+                <h2 class="section-title">Trải nghiệm sản phẩm</h2>
+                <div class="demo-container">
+                    <div class="demo-controls">
+                        <h4>Chọn sản phẩm để xem demo:</h4>
+                        <div class="demo-buttons">
+                            <button class="demo-btn active" data-demo="dashboard">Dashboard Analytics</button>
+                            <button class="demo-btn" data-demo="mobile">Mobile Interface</button>
+                            <button class="demo-btn" data-demo="iot">IoT Monitor</button>
+                        </div>
+                    </div>
+                    <div class="demo-screen">
+                        <canvas id="demoCanvas" width="700" height="500"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-rocket"></i> TechViet</h3>
+                    <p>Đối tác tin cậy trong chuyển đổi số của doanh nghiệp</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Dịch vụ</h4>
+                    <ul>
+                        <li><a href="services.html">Phát triển web</a></li>
+                        <li><a href="services.html">Ứng dụng mobile</a></li>
+                        <li><a href="services.html">Cloud computing</a></li>
+                        <li><a href="services.html">AI & Machine Learning</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Công ty</h4>
+                    <ul>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone"></i> +84 901 234 567</p>
+                        <p><i class="fas fa-envelope"></i> info@techviet.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechViet. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/canvas-module.js"></script>
+    <script src="js/storage-module.js"></script>
+</body>
+</html>

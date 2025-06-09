@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TechViet</title>
+    <meta name="description" content="Blog công nghệ với những bài viết chuyên sâu từ TechViet">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-rocket"></i> TechViet</h1>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="services.html">Dịch vụ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                
+                <!-- Mobile menu toggle -->
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Blog công nghệ</h1>
+                <nav class="breadcrumb">
+                    <a href="index.html">Trang chủ</a> / Blog
+                </nav>
+            </div>
+        </section>
+
+        <!-- Blog Filter -->
+        <section class="blog-filters">
+            <div class="container">
+                <div class="filter-wrapper">
+                    <div class="filter-categories">
+                        <button class="filter-btn active" data-category="all">Tất cả</button>
+                        <button class="filter-btn" data-category="ai">AI & Machine Learning</button>
+                        <button class="filter-btn" data-category="web">Web Development</button>
+                        <button class="filter-btn" data-category="mobile">Mobile Development</button>
+                        <button class="filter-btn" data-category="cloud">Cloud Computing</button>
+                        <button class="filter-btn" data-category="security">Cybersecurity</button>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" placeholder="Tìm kiếm bài viết..." id="blogSearch">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Article -->
+        <section class="featured-article">
+            <div class="container">
+                <article class="featured-post">
+                    <div class="featured-content">
+                        <div class="post-meta">
+                            <span class="category ai">AI & Machine Learning</span>
+                            <span class="date">15 Tháng 12, 2024</span>
+                        </div>
+                        <h2>Tương lai của AI trong phát triển phần mềm</h2>
+                        <p class="excerpt">
+                            Trí tuệ nhân tạo đang thay đổi cách chúng ta phát triển phần mềm. 
+                            Từ code generation đến automated testing, AI mở ra những khả năng mới...
+                        </p>
+                        <div class="post-actions">
+                            <a href="#" class="btn btn-primary">Đọc tiếp</a>
+                            <div class="post-stats">
+                                <span><i class="fas fa-eye"></i> 1,234 lượt xem</span>
+                                <span><i class="fas fa-heart"></i> 89 thích</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="featured-visual">
+                        <canvas id="featuredCanvas" width="400" height="300"></canvas>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Blog Grid -->
+        <section class="blog-grid">
+            <div class="container">
+                <div class="blog-posts">
+                    <!-- AI Category -->
+                    <article class="blog-card" data-category="ai">
+                        <div class="post-image">
+                            <canvas class="post-canvas" width="300" height="200" data-visual="ai-chart"></canvas>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="category ai">AI & Machine Learning</span>
+                                <span class="date">12 Tháng 12, 2024</span>
+                            </div>
+                            <h3>Implementing Machine Learning in Production</h3>
+                            <p>
+                                Hướng dẫn chi tiết cách triển khai mô hình machine learning 
+                                vào production với MLOps best practices...
+                            </p>
+                            <div class="post-footer">
+                                <div class="author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Nguyễn Văn A</span>
+                                </div>
+                                <div class="post-stats">
+                                    <span><i class="fas fa-eye"></i> 856</span>
+                                    <span><i class="fas fa-heart"></i> 42</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Web Development Category -->
+                    <article class="blog-card" data-category="web">
+                        <div class="post-image">
+                            <canvas class="post-canvas" width="300" height="200" data-visual="web-performance"></canvas>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="category web">Web Development</span>
+                                <span class="date">10 Tháng 12, 2024</span>
+                            </div>
+                            <h3>Optimizing Web Performance với Core Web Vitals</h3>
+                            <p>
+                                Tìm hiểu cách tối ưu hóa hiệu suất website dựa trên 
+                                Core Web Vitals của Google để cải thiện SEO...
+                            </p>
+                            <div class="post-footer">
+                                <div class="author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Trần Thị B</span>
+                                </div>
+                                <div class="post-stats">
+                                    <span><i class="fas fa-eye"></i> 1,205</span>
+                                    <span><i class="fas fa-heart"></i> 78</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Mobile Development Category -->
+                    <article class="blog-card" data-category="mobile">
+                        <div class="post-image">
+                            <canvas class="post-canvas" width="300" height="200" data-visual="mobile-trends"></canvas>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="category mobile">Mobile Development</span>
+                                <span class="date">8 Tháng 12, 2024</span>
+                            </div>
+                            <h3>Flutter vs React Native: So sánh chi tiết 2024</h3>
+                            <p>
+                                Phân tích so sánh chi tiết giữa Flutter và React Native 
+                                từ góc độ hiệu suất, ecosystem và developer experience...
+                            </p>
+                            <div class="post-footer">
+                                <div class="author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Lê Minh C</span>
+                                </div>
+                                <div class="post-stats">
+                                    <span><i class="fas fa-eye"></i> 2,341</span>
+                                    <span><i class="fas fa-heart"></i> 156</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Cloud Computing Category -->
+                    <article class="blog-card" data-category="cloud">
+                        <div class="post-image">
+                            <canvas class="post-canvas" width="300" height="200" data-visual="cloud-architecture"></canvas>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="category cloud">Cloud Computing</span>
+                                <span class="date">5 Tháng 12, 2024</span>
+                            </div>
+                            <h3>Microservices Architecture trên AWS</h3>
+                            <p>
+                                Hướng dẫn xây dựng kiến trúc microservices scalable 
+                                trên AWS với ECS, Lambda và API Gateway...
+                            </p>
+                            <div class="post-footer">
+                                <div class="author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Phạm Văn D</span>
+                                </div>
+                                <div class="post-stats">
+                                    <span><i class="fas fa-eye"></i> 987</span>
+                                    <span><i class="fas fa-heart"></i> 65</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Security Category -->
+                    <article class="blog-card" data-category="security">
+                        <div class="post-image">
+                            <canvas class="post-canvas" width="300" height="200" data-visual="security-trends"></canvas>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="category security">Cybersecurity</span>
+                                <span class="date">3 Tháng 12, 2024</span>
+                            </div>
+                            <h3>Zero Trust Security Model trong thực tế</h3>
+                            <p>
+                                Cách triển khai mô hình bảo mật Zero Trust trong 
+                                doanh nghiệp với các công cụ và best practices...
+                            </p>
+                            <div class="post-footer">
+                                <div class="author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Võ Thị E</span>
+                                </div>
+                                <div class="post-stats">
+                                    <span><i class="fas fa-eye"></i> 1,432</span>
+                                    <span><i class="fas fa-heart"></i> 98</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Web Development Category -->
+                    <article class="blog-card" data-category="web">
+                        <div class="post-image">
+                            <canvas class="post-canvas" width="300" height="200" data-visual="api-design"></canvas>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span class="category web">Web Development</span>
+                                <span class="date">1 Tháng 12, 2024</span>
+                            </div>
+                            <h3>RESTful API Design Best Practices</h3>
+                            <p>
+                                Nguyên tắc thiết kế RESTful API hiệu quả với 
+                                proper HTTP methods, status codes và documentation...
+                            </p>
+                            <div class="post-footer">
+                                <div class="author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Hoàng Văn F</span>
+                                </div>
+                                <div class="post-stats">
+                                    <span><i class="fas fa-eye"></i> 1,876</span>
+                                    <span><i class="fas fa-heart"></i> 123</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Sidebar -->
+                <aside class="blog-sidebar">
+                    <!-- Popular Posts -->
+                    <div class="sidebar-widget">
+                        <h4>Bài viết phổ biến</h4>
+                        <div class="popular-posts">
+                            <div class="popular-post">
+                                <div class="popular-image">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <div class="popular-content">
+                                    <h5>Top 10 JavaScript Frameworks 2024</h5>
+                                    <span class="popular-views">3,456 lượt xem</span>
+                                </div>
+                            </div>
+                            <div class="popular-post">
+                                <div class="popular-image">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="popular-content">
+                                    <h5>Docker vs Kubernetes: Khi nào sử dụng?</h5>
+                                    <span class="popular-views">2,890 lượt xem</span>
+                                </div>
+                            </div>
+                            <div class="popular-post">
+                                <div class="popular-image">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="popular-content">
+                                    <h5>GraphQL vs REST API</h5>
+                                    <span class="popular-views">2,654 lượt xem</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-widget">
+                        <h4>Danh mục</h4>
+                        <div class="categories-list">
+                            <div class="category-item">
+                                <span>AI & Machine Learning</span>
+                                <span class="count">12</span>
+                            </div>
+                            <div class="category-item">
+                                <span>Web Development</span>
+                                <span class="count">18</span>
+                            </div>
+                            <div class="category-item">
+                                <span>Mobile Development</span>
+                                <span class="count">8</span>
+                            </div>
+                            <div class="category-item">
+                                <span>Cloud Computing</span>
+                                <span class="count">15</span>
+                            </div>
+                            <div class="category-item">
+                                <span>Cybersecurity</span>
+                                <span class="count">6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="sidebar-widget">
+                        <h4>Đăng ký nhận tin</h4>
+                        <p>Nhận những bài viết mới nhất về công nghệ</p>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Email của bạn" required>
+                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        </form>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="sidebar-widget">
+                        <h4>Tags</h4>
+                        <div class="tags-cloud">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">API</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Pagination -->
+        <section class="pagination-section">
+            <div class="container">
+                <div class="pagination">
+                    <button class="page-btn prev" disabled>
+                        <i class="fas fa-chevron-left"></i> Trước
+                    </button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <span class="page-dots">...</span>
+                    <button class="page-btn">10</button>
+                    <button class="page-btn next">
+                        Sau <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-rocket"></i> TechViet</h3>
+                    <p>Đối tác tin cậy trong chuyển đổi số của doanh nghiệp</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Dịch vụ</h4>
+                    <ul>
+                        <li><a href="services.html">Phát triển web</a></li>
+                        <li><a href="services.html">Ứng dụng mobile</a></li>
+                        <li><a href="services.html">Cloud computing</a></li>
+                        <li><a href="services.html">AI & Machine Learning</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Công ty</h4>
+                    <ul>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone"></i> +84 901 234 567</p>
+                        <p><i class="fas fa-envelope"></i> info@techviet.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechViet. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/canvas-module.js"></script>
+    <script src="js/storage-module.js"></script>
+</body>
+</html>

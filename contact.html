@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên hệ - TechViet</title>
+    <meta name="description" content="Liên hệ với TechViet để được tư vấn giải pháp công nghệ">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-rocket"></i> TechViet</h1>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="services.html">Dịch vụ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html" class="active">Liên hệ</a></li>
+                </ul>
+                
+                <!-- Mobile menu toggle -->
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Liên hệ với chúng tôi</h1>
+                <nav class="breadcrumb">
+                    <a href="index.html">Trang chủ</a> / Liên hệ
+                </nav>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-content">
+                    <!-- Contact Information -->
+                    <div class="contact-info">
+                        <h2>Thông tin liên hệ</h2>
+                        <p class="contact-description">
+                            Hãy liên hệ với chúng tôi để được tư vấn miễn phí về 
+                            các giải pháp công nghệ phù hợp với doanh nghiệp của bạn.
+                        </p>
+
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Địa chỉ</h4>
+                                    <p>123 Đường ABC, Phường XYZ<br>Quận 1, TP. Hồ Chí Minh</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Điện thoại</h4>
+                                    <p>Hotline: +84 901 234 567<br>Văn phòng: +84 28 3456 7890</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>info@techviet.com<br>support@techviet.com</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Giờ làm việc</h4>
+                                    <p>Thứ 2 - Thứ 6: 8:00 - 17:00<br>Thứ 7: 8:00 - 12:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="contact-social">
+                            <h4>Theo dõi chúng tôi</h4>
+                            <div class="social-links">
+                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <h2>Gửi tin nhắn cho chúng tôi</h2>
+                        <form class="contact-form" id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label for="fullName">Họ và tên *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                                <div class="error-message"></div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                    <div class="error-message"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">Số điện thoại *</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                    <div class="error-message"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">Công ty</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service">Dịch vụ quan tâm *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">-- Chọn dịch vụ --</option>
+                                    <option value="web">Phát triển Web</option>
+                                    <option value="mobile">Ứng dụng Mobile</option>
+                                    <option value="cloud">Cloud Computing</option>
+                                    <option value="ai">AI & Machine Learning</option>
+                                    <option value="iot">IoT Solutions</option>
+                                    <option value="security">Cybersecurity</option>
+                                    <option value="consulting">Tư vấn</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                                <div class="error-message"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget">Ngân sách dự kiến</label>
+                                <select id="budget" name="budget">
+                                    <option value="">-- Chọn ngân sách --</option>
+                                    <option value="under-10m">Dưới 10 triệu VND</option>
+                                    <option value="10m-50m">10 - 50 triệu VND</option>
+                                    <option value="50m-100m">50 - 100 triệu VND</option>
+                                    <option value="100m-500m">100 - 500 triệu VND</option>
+                                    <option value="over-500m">Trên 500 triệu VND</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Tin nhắn *</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Mô tả chi tiết về dự án hoặc yêu cầu của bạn..." required></textarea>
+                                <div class="error-message"></div>
+                            </div>
+
+                            <!-- File Upload với Drag & Drop -->
+                            <div class="form-group">
+                                <label>Tài liệu đính kèm (tùy chọn)</label>
+                                <div class="file-upload-area" id="fileUploadArea">
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Kéo thả file vào đây hoặc <span class="upload-link">click để chọn</span></p>
+                                        <small>Hỗ trợ: PDF, DOC, DOCX, XLS, XLSX (Tối đa 5MB mỗi file)</small>
+                                        <input type="file" id="attachments" name="attachments" multiple accept=".pdf,.doc,.docx,.xls,.xlsx" hidden>
+                                    </div>
+                                    <div class="file-list" id="fileList"></div>
+                                </div>
+                            </div>
+
+                            <!-- Checkbox Agreement -->
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="agreement" name="agreement" required>
+                                    <span class="checkmark"></span>
+                                    Tôi đồng ý với <a href="#">điều khoản sử dụng</a> và <a href="#">chính sách bảo mật</a> *
+                                </label>
+                                <div class="error-message"></div>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <span class="checkmark"></span>
+                                    Tôi muốn nhận tin tức và ưu đãi từ TechViet
+                                </label>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Gửi tin nhắn
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="clearForm">
+                                    <i class="fas fa-undo"></i>
+                                    Làm mới
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Form Status Messages -->
+                        <div class="form-status" id="formStatus"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h2 class="section-title">Vị trí văn phòng</h2>
+                <div class="map-container">
+                    <!-- Canvas Map Visualization -->
+                    <canvas id="mapCanvas" width="800" height="400"></canvas>
+                    <div class="map-overlay">
+                        <div class="map-info">
+                            <h4><i class="fas fa-map-marker-alt"></i> Văn phòng chính</h4>
+                            <p>123 Đường ABC, Phường XYZ, Quận 1, TP.HCM</p>
+                            <div class="map-actions">
+                                <button class="btn btn-primary" onclick="getDirections()">
+                                    <i class="fas fa-directions"></i> Chỉ đường
+                                </button>
+                                <button class="btn btn-secondary" onclick="shareLocation()">
+                                    <i class="fas fa-share-alt"></i> Chia sẻ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Câu hỏi thường gặp</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Thời gian hoàn thành dự án thường là bao lâu?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Thời gian hoàn thành phụ thuộc vào quy mô và độ phức tạp của dự án. Thông thường:</p>
+                            <ul>
+                                <li>Website đơn giản: 2-4 tuần</li>
+                                <li>Ứng dụng mobile: 3-6 tháng</li>
+                                <li>Hệ thống enterprise: 6-12 tháng</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Chi phí phát triển được tính như thế nào?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Chi phí được tính dựa trên nhiều yếu tố:</p>
+                            <ul>
+                                <li>Phạm vi và độ phức tạp của dự án</li>
+                                <li>Công nghệ sử dụng</li>
+                                <li>Thời gian phát triển</li>
+                                <li>Yêu cầu về bảo mật và hiệu suất</li>
+                            </ul>
+                            <p>Chúng tôi sẽ cung cấp báo giá chi tiết sau khi phân tích yêu cầu.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Có hỗ trợ bảo trì sau khi hoàn thành không?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Có, chúng tôi cung cấp các gói bảo trì linh hoạt:</p>
+                            <ul>
+                                <li>Bảo hành miễn phí 3-6 tháng đầu</li>
+                                <li>Gói bảo trì cơ bản: Bug fixes, security updates</li>
+                                <li>Gói bảo trì nâng cao: Feature updates, performance optimization</li>
+                                <li>Hỗ trợ 24/7 cho các hệ thống critical</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Quy trình làm việc với khách hàng như thế nào?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Quy trình chuẩn của chúng tôi bao gồm:</p>
+                            <ol>
+                                <li>Tư vấn và phân tích yêu cầu</li>
+                                <li>Thiết kế và lập kế hoạch chi tiết</li>
+                                <li>Phát triển theo agile methodology</li>
+                                <li>Testing và QA toàn diện</li>
+                                <li>Deploy và training</li>
+                                <li>Bảo trì và hỗ trợ lâu dài</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-rocket"></i> TechViet</h3>
+                    <p>Đối tác tin cậy trong chuyển đổi số của doanh nghiệp</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Dịch vụ</h4>
+                    <ul>
+                        <li><a href="services.html">Phát triển web</a></li>
+                        <li><a href="services.html">Ứng dụng mobile</a></li>
+                        <li><a href="services.html">Cloud computing</a></li>
+                        <li><a href="services.html">AI & Machine Learning</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Công ty</h4>
+                    <ul>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone"></i> +84 901 234 567</p>
+                        <p><i class="fas fa-envelope"></i> info@techviet.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechViet. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/canvas-module.js"></script>
+    <script src="js/storage-module.js"></script>
+    <script src="js/dragdrop-module.js"></script>
+</body>
+</html>

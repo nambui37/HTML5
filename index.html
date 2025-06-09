@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechViet - Giải pháp công nghệ hàng đầu</title>
+    <meta name="description" content="TechViet cung cấp các giải pháp công nghệ tiên tiến cho doanh nghiệp">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-rocket"></i> TechViet</h1>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="active">Trang chủ</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="services.html">Dịch vụ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+                
+                <!-- Mobile menu toggle -->
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Giải pháp công nghệ tiên tiến</h2>
+                    <p class="hero-description">
+                        Chúng tôi mang đến những giải pháp công nghệ hiện đại nhất để 
+                        thúc đẩy sự phát triển của doanh nghiệp bạn
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="services.html" class="btn btn-primary">Khám phá dịch vụ</a>
+                        <a href="contact.html" class="btn btn-secondary">Liên hệ ngay</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- Canvas Module - Interactive Chart -->
+                    <canvas id="heroCanvas" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Tại sao chọn TechViet?</h2>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightning-bolt"></i>
+                        </div>
+                        <h3>Hiệu suất cao</h3>
+                        <p>Các giải pháp được tối ưu hóa để đảm bảo hiệu suất tối đa cho hệ thống của bạn</p>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Bảo mật cao</h3>
+                        <p>Áp dụng các tiêu chuẩn bảo mật quốc tế để bảo vệ dữ liệu của bạn</p>
+                    </article>
+                    
+                    <article class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Hỗ trợ 24/7</h3>
+                        <p>Đội ngũ chuyên gia luôn sẵn sàng hỗ trợ bạn mọi lúc, mọi nơi</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section với Web Storage -->
+        <section class="statistics">
+            <div class="container">
+                <h2 class="section-title">Thống kê thành tựu</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="500">0</div>
+                        <div class="stat-label">Dự án hoàn thành</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">Khách hàng hài lòng</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="10">0</div>
+                        <div class="stat-label">Năm kinh nghiệm</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="24">0</div>
+                        <div class="stat-label">Hỗ trợ 24/7</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- File Upload Module với Drag & Drop -->
+        <section class="upload-module">
+            <div class="container">
+                <h2 class="section-title">Upload tài liệu dự án</h2>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Kéo thả file vào đây hoặc click để chọn</h3>
+                        <p>Hỗ trợ: PDF, DOC, DOCX, TXT (Tối đa 10MB)</p>
+                        <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.txt">
+                    </div>
+                    <div class="upload-list" id="uploadList"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-rocket"></i> TechViet</h3>
+                    <p>Đối tác tin cậy trong chuyển đổi số của doanh nghiệp</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Dịch vụ</h4>
+                    <ul>
+                        <li><a href="services.html">Phát triển web</a></li>
+                        <li><a href="services.html">Ứng dụng mobile</a></li>
+                        <li><a href="services.html">Cloud computing</a></li>
+                        <li><a href="services.html">AI & Machine Learning</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Công ty</h4>
+                    <ul>
+                        <li><a href="about.html">Về chúng tôi</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone"></i> +84 901 234 567</p>
+                        <p><i class="fas fa-envelope"></i> info@techviet.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechViet. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/canvas-module.js"></script>
+    <script src="js/storage-module.js"></script>
+    <script src="js/dragdrop-module.js"></script>
+</body>
+</html>
