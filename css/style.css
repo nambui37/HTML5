@@ -1567,8 +1567,12 @@ img {
 }
 
 .checkbox-label input[type="checkbox"] {
-    width: auto;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
     margin: 0;
+    z-index: -1;
 }
 
 .checkmark {
@@ -1576,11 +1580,12 @@ img {
     height: 20px;
     border: 2px solid var(--border-color);
     border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
+    display: inline-block;
+    position: relative;
+    background: #fff;
+    vertical-align: middle;
+    margin-right: 8px;
+    transition: border-color 0.2s, background 0.2s;
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkmark {
@@ -1588,10 +1593,22 @@ img {
     border-color: var(--primary-color);
 }
 
+.checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
 .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
-    content: '✓';
-    color: white;
-    font-size: 12px;
+    display: block;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    content: '';
 }
 
 .form-actions {
