@@ -1,8 +1,4 @@
-/**
- * TechViet - Web Storage Module
- * Implements HTML5 Web Storage API (localStorage and sessionStorage)
- * Provides persistent data storage and user preferences management
- */
+
 
 'use strict';
 

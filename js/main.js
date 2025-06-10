@@ -185,7 +185,6 @@ const TechViet = {
     // Scroll effects and header behavior
     setupScrollEffects: function() {
         const header = document.querySelector('.header');
-        let lastScrollTop = 0;
 
         const handleScroll = this.utils.throttle(() => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -197,14 +196,14 @@ const TechViet = {
                 header?.classList.remove('scrolled');
             }
 
-            // Hide/show header on scroll (optional)
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                header?.classList.add('hidden');
-            } else {
-                header?.classList.remove('hidden');
-            }
+            // Loại bỏ logic ẩn/hiện header khi cuộn
+            // if (scrollTop > lastScrollTop && scrollTop > 100) {
+            //     header?.classList.add('hidden');
+            // } else {
+            //     header?.classList.remove('hidden');
+            // }
 
-            lastScrollTop = scrollTop;
+            // lastScrollTop = scrollTop;
 
             // Trigger scroll animations
             this.handleScrollAnimations();
