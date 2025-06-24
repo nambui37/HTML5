@@ -1,0 +1,911 @@
+/* ===================================
+   TechViet - CSS đáp ứng (Responsive)
+   Thiết kế ưu tiên di động với các điểm ngắt (breakpoints)
+   =================================== */
+
+/* Biến breakpoint */
+:root {
+    --breakpoint-xs: 480px;
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+}
+
+/* ===================================
+   Mobile First - Kiểu cơ bản cho di động (0-479px)
+   =================================== */
+
+/* Padding container đáp ứng */
+.container {
+    padding: 0 1rem;
+}
+
+/* Điều chỉnh header trên di động */
+.header .container {
+    padding: 0 1rem;
+}
+
+.logo h1 {
+    font-size: var(--font-size-xl);
+}
+
+/* Ẩn menu desktop trên di động */
+.main-nav .nav-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    box-shadow: var(--box-shadow);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0;
+}
+
+.main-nav .nav-list.active {
+    display: flex;
+}
+
+.main-nav .nav-list li {
+    width: 100%;
+}
+
+.main-nav .nav-list a {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Hiển thị nút menu di động */
+.mobile-menu-toggle {
+    display: flex;
+}
+
+/* Khu vực hero trên di động */
+.hero .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: var(--font-size-3xl);
+}
+
+.hero-buttons {
+    justify-content: center;
+}
+
+#heroCanvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Lưới tính năng trên di động */
+.features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Lưới thống kê trên di động */
+.stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-number {
+    font-size: var(--font-size-3xl);
+}
+
+/* Khu vực giới thiệu trên di động */
+.about-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+}
+
+.about-section.reverse {
+    direction: ltr;
+}
+
+/* Lưới thành viên nhóm trên di động */
+.team-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Timeline trên di động */
+.timeline::before {
+    left: 20px;
+}
+
+.timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 3rem;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: column;
+}
+
+.timeline-year {
+    position: absolute;
+    left: -10px;
+    top: 0;
+}
+
+.timeline-content {
+    margin: 0;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* Lưới dịch vụ trên di động */
+.services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Các bước quy trình trên di động */
+.process-steps {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* So sánh dịch vụ trên di động */
+.comparison-controls {
+    text-align: center;
+}
+
+.service-checkboxes {
+    justify-content: center;
+}
+
+.comparison-canvas-container canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Lưới sản phẩm trên di động */
+.products-grid .container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* So sánh sản phẩm trên di động */
+.comparison-selector {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.comparison-chart canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Điều khiển demo trên di động */
+.demo-buttons {
+    justify-content: center;
+}
+
+.demo-screen canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Bộ lọc blog trên di động */
+.filter-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.filter-categories {
+    justify-content: center;
+}
+
+.search-box {
+    min-width: auto;
+    width: 100%;
+}
+
+/* Bài viết nổi bật trên di động */
+.featured-post {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+}
+
+/* Lưới blog trên di động */
+.blog-grid .container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.blog-sidebar {
+    order: -1;
+}
+
+/* Phân trang trên di động */
+.pagination {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.page-btn {
+    padding: 0.5rem 0.75rem;
+}
+
+/* Nội dung liên hệ trên di động */
+.contact-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.contact-form-container {
+    order: -1;
+}
+
+/* Dòng biểu mẫu trên di động */
+.form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+/* Bản đồ trên di động */
+.map-overlay {
+    position: static;
+    margin: 1rem;
+    max-width: none;
+}
+
+.map-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Footer trên di động */
+.footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+}
+
+/* Nút trên di động */
+.btn {
+    padding: 0.75rem 1rem;
+    font-size: var(--font-size-sm);
+}
+
+/* Canvas đáp ứng */
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===================================
+   Điện thoại nhỏ (480px trở lên)
+   =================================== */
+
+@media (min-width: 480px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-categories {
+        flex-wrap: nowrap;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: var(--font-size-base);
+    }
+}
+
+/* ===================================
+   Máy tính bảng (640px trở lên)
+   =================================== */
+
+@media (min-width: 640px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    /* Hiển thị menu điều hướng trên desktop */
+    .main-nav .nav-list {
+        display: flex;
+        position: static;
+        background: transparent;
+        box-shadow: none;
+        flex-direction: row;
+        padding: 0;
+        gap: 2rem;
+    }
+
+    .main-nav .nav-list li {
+        width: auto;
+    }
+
+    .main-nav .nav-list a {
+        display: inline-block;
+        width: auto;
+        padding: 0.5rem 1rem;
+        border-bottom: none;
+    }
+
+    /* Ẩn nút menu di động */
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-grid .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .comparison-selector {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .filter-wrapper {
+        flex-direction: row;
+    }
+
+    .search-box {
+        min-width: 250px;
+        width: auto;
+    }
+
+    /* Dòng biểu mẫu trở lại hai cột */
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    /* Cải tiến timeline */
+    .timeline::before {
+        left: 50%;
+    }
+
+    .timeline-item {
+        flex-direction: row;
+        align-items: center;
+        padding-left: 0;
+    }
+
+    .timeline-item:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
+
+    .timeline-year {
+        position: static;
+    }
+
+    .timeline-content {
+        margin: 0 2rem;
+        margin-top: 0;
+        width: auto;
+    }
+}
+
+/* ===================================
+   Máy tính bảng lớn (768px trở lên)
+   =================================== */
+
+@media (min-width: 768px) {
+    .hero .container {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+
+    .hero-buttons {
+        justify-content: flex-start;
+    }
+
+    .about-section {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+
+    .about-section.reverse {
+        direction: rtl;
+    }
+
+    .about-section.reverse > * {
+        direction: ltr;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-grid .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .process-steps {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .featured-post {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+
+    .blog-grid .container {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .blog-sidebar {
+        order: 0;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-form-container {
+        order: 0;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        text-align: left;
+    }
+
+    /* Bản đồ trở lại vị trí tuyệt đối */
+    .map-overlay {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        margin: 0;
+        max-width: 300px;
+    }
+
+    .map-actions {
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+/* ===================================
+   Máy tính để bàn (1024px trở lên)
+   =================================== */
+
+@media (min-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .products-grid .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Kích thước canvas lớn hơn cho máy tính để bàn */
+    #heroCanvas {
+        width: 400px;
+        height: 300px;
+    }
+
+    #comparisonCanvas {
+        width: 600px;
+        height: 400px;
+    }
+
+    #productComparisonCanvas {
+        width: 600px;
+        height: 400px;
+    }
+
+    #demoCanvas {
+        width: 700px;
+        height: 500px;
+    }
+
+    #mapCanvas {
+        width: 800px;
+        height: 400px;
+    }
+
+    #featuredCanvas {
+        width: 400px;
+        height: 300px;
+    }
+
+    .post-canvas {
+        width: 300px;
+        height: 200px;
+    }
+
+    .product-canvas {
+        width: 300px;
+        height: 200px;
+    }
+}
+
+/* ===================================
+   Máy tính để bàn lớn (1280px trở lên)
+   =================================== */
+
+@media (min-width: 1280px) {
+    .container {
+        padding: 0 3rem;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .products-grid .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Khoảng cách lớn hơn cho màn hình rất lớn */
+    .hero {
+        padding: 6rem 0;
+    }
+
+    .features,
+    .statistics,
+    .upload-module,
+    .about-content,
+    .team-section,
+    .timeline-section,
+    .services-overview,
+    .process-section,
+    .product-comparison-section,
+    .product-demo,
+    .blog-grid,
+    .contact-section,
+    .map-section,
+    .faq-section {
+        padding: 6rem 0;
+    }
+}
+
+/* ===================================
+   Máy tính để bàn siêu lớn (1536px trở lên)
+   =================================== */
+
+@media (min-width: 1536px) {
+    :root {
+        --container-max-width: 1400px;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .products-grid .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ===================================
+   Kiểu in
+   =================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    .header,
+    .footer,
+    .mobile-menu-toggle,
+    .btn,
+    .upload-module,
+    .map-section,
+    .social-links {
+        display: none !important;
+    }
+
+    .main-content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-header {
+        background: none !important;
+        color: black !important;
+    }
+
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+
+    canvas {
+        display: none;
+    }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+}
+
+/* ===================================
+   Hướng điện thoại nằm ngang
+   =================================== */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding: 2rem 0;
+    }
+
+    .page-header {
+        padding: 2rem 0;
+    }
+
+    .header {
+        position: static;
+    }
+
+    .main-content {
+        min-height: auto;
+    }
+}
+
+/* ===================================
+   Tối ưu hóa cho thiết bị cảm ứng
+   =================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    /* Tăng kích thước mục tiêu cảm ứng */
+    .btn,
+    .nav-list a,
+    .filter-btn,
+    .demo-btn,
+    .page-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Loại bỏ hiệu ứng hover trên thiết bị cảm ứng */
+    .feature-card:hover,
+    .service-card:hover,
+    .product-card:hover,
+    .blog-card:hover {
+        transform: none;
+        box-shadow: var(--box-shadow);
+    }
+
+    .btn-primary:hover {
+        transform: none;
+    }
+
+    /* Khoảng cách tốt hơn cho cảm ứng */
+    .social-links a {
+        width: 48px;
+        height: 48px;
+    }
+
+    .mobile-menu-toggle {
+        padding: 1rem;
+    }
+}
+
+/* ===================================
+   Hỗ trợ chế độ tối
+   =================================== */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --text-light: #9ca3af;
+        
+        --bg-primary: #1f2937;
+        --bg-secondary: #111827;
+        --bg-accent: #374151;
+        
+        --border-color: #4b5563;
+    }
+
+    .header {
+        background: var(--bg-primary);
+    }
+
+    .hero {
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-accent));
+    }
+
+    canvas {
+        filter: brightness(0.9);
+    }
+}
+
+/* ===================================
+   Tùy chọn giảm chuyển động
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-visual,
+    .feature-card,
+    .service-card,
+    .product-card,
+    .blog-card {
+        transition: none;
+    }
+
+    .btn-primary:hover {
+        transform: none;
+    }
+
+    .timeline::before,
+    .section-title::after {
+        animation: none;
+    }
+}
+
+/* ===================================
+   Hỗ trợ màn hình độ phân giải cao / Retina
+   =================================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    canvas {
+        /* Hiển thị tốt hơn cho màn hình độ phân giải cao */
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ===================================
+   Sửa lỗi theo trình duyệt
+   =================================== */
+
+/* Sửa lỗi riêng cho Safari */
+@supports (-webkit-appearance: none) {
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        appearance: none;
+        -webkit-appearance: none;
+    }
+}
+
+/* Sửa lỗi riêng cho Firefox */
+@-moz-document url-prefix() {
+    .timeline::before {
+        background: var(--primary-color);
+    }
+}
+
+/* Sửa lỗi riêng cho Edge/IE */
+@supports (-ms-ime-align: auto) {
+    .grid {
+        display: -ms-grid;
+    }
+}
+
+/* ===================================
+   Quản lý tiêu điểm cho khả năng tiếp cận
+   =================================== */
+
+@media (any-hover: hover) {
+    .focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+    }
+}
+
+/* ===================================
+   Truy vấn container (khi được hỗ trợ)
+   =================================== */
+
+@supports (container-type: inline-size) {
+    .responsive-container {
+        container-type: inline-size;
+    }
+
+    @container (min-width: 400px) {
+        .card-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @container (min-width: 600px) {
+        .card-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+/* Nâng cấp responsive cho form trên di động */
+@media (max-width: 768px) {
+    .contact-form-container,
+    .contact-form {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .form-group,
+    .form-row {
+        width: 100%;
+        display: block;
+        margin-bottom: 1.2rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        min-width: 0;
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+    .form-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+    .form-actions button {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 1rem;
+    }
+    .error-message {
+        font-size: 0.95rem;
+        padding: 0.25rem 0 0 0.25rem;
+    }
+    .file-upload-area, .upload-area {
+        width: 100%;
+        min-height: 120px;
+        font-size: 1rem;
+    }
+}

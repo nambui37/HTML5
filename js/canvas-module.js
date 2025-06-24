@@ -1,13 +1,13 @@
 /**
- * TechViet - Canvas Module
- * Implements HTML5 Canvas API for interactive charts and visualizations
- * Provides dynamic data visualization without external image dependencies
+ * TechViet - Module Canvas
+ * Triển khai API Canvas HTML5 cho biểu đồ và trực quan hóa tương tác
+ * Cung cấp trực quan hóa dữ liệu động mà không cần ảnh ngoài
  */
 
 'use strict';
 
 const CanvasModule = {
-    // Canvas configurations
+    // Cấu hình canvas
     config: {
         chartColors: {
             primary: '#2563eb',
@@ -25,22 +25,22 @@ const CanvasModule = {
         }
     },
 
-    // Initialize all canvas elements
+    // Khởi tạo tất cả phần tử canvas
     init: function() {
-        console.log('Initializing Canvas Module...');
+        console.log('Đang khởi tạo Module Canvas...');
         this.setupCanvasElements();
         this.startAnimationLoop();
     },
 
-    // Setup all canvas elements on the page
+    // Thiết lập tất cả phần tử canvas trên trang
     setupCanvasElements: function() {
-        // Hero section canvas
+        // Canvas phần hero
         const heroCanvas = document.getElementById('heroCanvas');
         if (heroCanvas) {
             this.drawHeroVisualization(heroCanvas);
         }
 
-        // About page canvases
+        // Canvas trang giới thiệu
         const visionCanvas = document.getElementById('visionCanvas');
         if (visionCanvas) {
             this.drawVisionChart(visionCanvas);
@@ -56,35 +56,35 @@ const CanvasModule = {
             this.drawValuesChart(valuesCanvas);
         }
 
-        // Services page canvas
+        // Canvas trang dịch vụ
         const comparisonCanvas = document.getElementById('comparisonCanvas');
         if (comparisonCanvas) {
             this.setupServiceComparison(comparisonCanvas);
         }
 
-        // Products page canvases
+        // Canvas trang sản phẩm
         this.setupProductCanvases();
 
-        // Blog page canvases
+        // Canvas trang blog
         this.setupBlogCanvases();
 
-        // Contact page canvas
+        // Canvas trang liên hệ
         const mapCanvas = document.getElementById('mapCanvas');
         if (mapCanvas) {
             this.drawMapVisualization(mapCanvas);
         }
     },
 
-    // Draw hero section visualization
+    // Vẽ trực quan hóa phần hero
     drawHeroVisualization: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
         const height = canvas.height;
 
-        // Clear canvas
+        // Xóa canvas
         ctx.clearRect(0, 0, width, height);
 
-        // Create gradient background
+        // Tạo nền gradient
         const bgGradient = ctx.createLinearGradient(0, 0, width, height);
         bgGradient.addColorStop(0, this.config.chartColors.primary + '20');
         bgGradient.addColorStop(1, this.config.chartColors.secondary + '10');
@@ -92,26 +92,26 @@ const CanvasModule = {
         ctx.fillStyle = bgGradient;
         ctx.fillRect(0, 0, width, height);
 
-        // Draw animated tech elements
+        // Vẽ các yếu tố công nghệ động
         this.drawTechElements(ctx, width, height);
         
-        // Draw data flow lines
+        // Vẽ các đường dữ liệu
         this.drawDataFlow(ctx, width, height);
         
-        // Draw central node
+        // Vẽ nút trung tâm
         this.drawCentralNode(ctx, width / 2, height / 2);
     },
 
-    // Draw tech elements (circuits, nodes)
+    // Vẽ các yếu tố công nghệ (mạch, nút)
     drawTechElements: function(ctx, width, height) {
         const time = Date.now() * 0.001;
         
-        // Draw circuit lines
+        // Vẽ các đường mạch
         ctx.strokeStyle = this.config.chartColors.primary + '40';
         ctx.lineWidth = 2;
         ctx.beginPath();
         
-        // Horizontal lines
+        // Các đường ngang
         for (let i = 0; i < 5; i++) {
             const y = (height / 6) * (i + 1);
             const offset = Math.sin(time + i) * 10;
@@ -119,7 +119,7 @@ const CanvasModule = {
             ctx.lineTo(width - offset, y);
         }
         
-        // Vertical lines
+        // Các đường dọc
         for (let i = 0; i < 5; i++) {
             const x = (width / 6) * (i + 1);
             const offset = Math.cos(time + i) * 10;
@@ -129,7 +129,7 @@ const CanvasModule = {
         
         ctx.stroke();
 
-        // Draw nodes at intersections
+        // Vẽ các nút tại các giao điểm
         ctx.fillStyle = this.config.chartColors.accent;
         for (let i = 1; i < 5; i++) {
             for (let j = 1; j < 5; j++) {
@@ -145,11 +145,11 @@ const CanvasModule = {
         }
     },
 
-    // Draw data flow animation
+    // Vẽ hoạt ảnh dòng dữ liệu
     drawDataFlow: function(ctx, width, height) {
         const time = Date.now() * 0.001;
         
-        // Flowing particles
+        // Các hạt đang chảy
         ctx.fillStyle = this.config.chartColors.gradient1;
         for (let i = 0; i < 20; i++) {
             const x = (width / 20) * i + (Math.sin(time + i) * 20);
@@ -162,25 +162,25 @@ const CanvasModule = {
         }
     },
 
-    // Draw central processing node
+    // Vẽ nút xử lý trung tâm
     drawCentralNode: function(ctx, centerX, centerY) {
         const time = Date.now() * 0.001;
         const pulse = Math.sin(time * 2) * 0.3 + 0.7;
         
-        // Outer ring
+        // Vòng ngoài
         ctx.strokeStyle = this.config.chartColors.primary;
         ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.arc(centerX, centerY, 30 * pulse, 0, Math.PI * 2);
         ctx.stroke();
         
-        // Inner core
+        // Nhân bên trong
         ctx.fillStyle = this.config.chartColors.accent;
         ctx.beginPath();
         ctx.arc(centerX, centerY, 15, 0, Math.PI * 2);
         ctx.fill();
         
-        // Rotating elements
+        // Các yếu tố quay
         for (let i = 0; i < 6; i++) {
             const angle = (time + i * Math.PI / 3);
             const x = centerX + Math.cos(angle) * 40;
@@ -193,7 +193,7 @@ const CanvasModule = {
         }
     },
 
-    // Draw vision chart for about page
+    // Vẽ biểu đồ tầm nhìn cho trang giới thiệu
     drawVisionChart: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -201,12 +201,12 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // Growth chart visualization
+        // Biểu đồ tăng trưởng
         const data = [20, 35, 45, 60, 80, 95];
         const maxValue = Math.max(...data);
         const barWidth = width / data.length;
         
-        // Draw gradient bars
+        // Vẽ các thanh gradient
         data.forEach((value, index) => {
             const barHeight = (value / maxValue) * (height - 40);
             const x = index * barWidth + 10;
@@ -219,21 +219,21 @@ const CanvasModule = {
             ctx.fillStyle = gradient;
             ctx.fillRect(x, y, barWidth - 20, barHeight);
             
-            // Add value labels
+            // Thêm nhãn giá trị
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.font = '12px Roboto';
             ctx.textAlign = 'center';
             ctx.fillText(value + '%', x + (barWidth - 20) / 2, y - 10);
         });
         
-        // Add title
+        // Thêm tiêu đề
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.font = 'bold 14px Roboto';
         ctx.textAlign = 'center';
         ctx.fillText('Tăng trưởng dự kiến', width / 2, 20);
     },
 
-    // Draw mission chart
+    // Vẽ biểu đồ sứ mệnh
     drawMissionChart: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -241,7 +241,7 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // Pie chart for mission areas
+        // Biểu đồ hình tròn cho các lĩnh vực sứ mệnh
         const data = [
             { label: 'Web Dev', value: 30, color: this.config.chartColors.primary },
             { label: 'Mobile', value: 25, color: this.config.chartColors.accent },
@@ -259,7 +259,7 @@ const CanvasModule = {
         data.forEach(segment => {
             const sliceAngle = (segment.value / 100) * 2 * Math.PI;
             
-            // Draw slice
+            // Vẽ lát cắt
             ctx.beginPath();
             ctx.moveTo(centerX, centerY);
             ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
@@ -270,7 +270,7 @@ const CanvasModule = {
             ctx.lineWidth = 2;
             ctx.stroke();
             
-            // Draw label
+            // Vẽ nhãn
             const labelAngle = currentAngle + sliceAngle / 2;
             const labelX = centerX + Math.cos(labelAngle) * (radius + 20);
             const labelY = centerY + Math.sin(labelAngle) * (radius + 20);
@@ -284,7 +284,7 @@ const CanvasModule = {
         });
     },
 
-    // Draw values chart
+    // Vẽ biểu đồ giá trị
     drawValuesChart: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -292,7 +292,7 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // Radar chart for company values
+        // Biểu đồ radar cho các giá trị công ty
         const values = ['Đổi mới', 'Chất lượng', 'Tận tâm', 'Trách nhiệm', 'Hiệu quả'];
         const scores = [90, 95, 88, 92, 85];
         const maxScore = 100;
@@ -302,7 +302,7 @@ const CanvasModule = {
         const radius = Math.min(width, height) / 3;
         const angleStep = (2 * Math.PI) / values.length;
         
-        // Draw grid
+        // Vẽ lưới
         ctx.strokeStyle = this.config.chartColors.secondary + '30';
         ctx.lineWidth = 1;
         
@@ -313,7 +313,7 @@ const CanvasModule = {
             ctx.stroke();
         }
         
-        // Draw axes
+        // Vẽ trục
         for (let i = 0; i < values.length; i++) {
             const angle = i * angleStep - Math.PI / 2;
             const x = centerX + Math.cos(angle) * radius;
@@ -324,7 +324,7 @@ const CanvasModule = {
             ctx.lineTo(x, y);
             ctx.stroke();
             
-            // Draw labels
+            // Vẽ nhãn
             const labelX = centerX + Math.cos(angle) * (radius + 15);
             const labelY = centerY + Math.sin(angle) * (radius + 15);
             
@@ -334,7 +334,7 @@ const CanvasModule = {
             ctx.fillText(values[i], labelX, labelY);
         }
         
-        // Draw data polygon
+        // Vẽ đa giác dữ liệu
         ctx.beginPath();
         ctx.strokeStyle = this.config.chartColors.primary;
         ctx.fillStyle = this.config.chartColors.primary + '30';
@@ -357,7 +357,7 @@ const CanvasModule = {
         ctx.fill();
         ctx.stroke();
         
-        // Draw data points
+        // Vẽ các điểm dữ liệu
         ctx.fillStyle = this.config.chartColors.accent;
         for (let i = 0; i < scores.length; i++) {
             const angle = i * angleStep - Math.PI / 2;
@@ -371,7 +371,7 @@ const CanvasModule = {
         }
     },
 
-    // Setup service comparison chart
+    // Thiết lập biểu đồ so sánh dịch vụ
     setupServiceComparison: function(canvas) {
         const ctx = canvas.getContext('2d');
         const checkboxes = document.querySelectorAll('.service-checkboxes input[type="checkbox"]');
@@ -382,11 +382,11 @@ const CanvasModule = {
             });
         });
         
-        // Initial draw
+        // Vẽ ban đầu
         this.updateServiceComparison(canvas);
     },
 
-    // Update service comparison chart
+    // Cập nhật biểu đồ so sánh dịch vụ
     updateServiceComparison: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -398,7 +398,7 @@ const CanvasModule = {
         const selectedServices = Array.from(checkboxes).map(cb => cb.value);
         
         if (selectedServices.length === 0) {
-            // Show instruction text
+            // Hiển thị văn bản hướng dẫn
             ctx.fillStyle = this.config.chartColors.secondary;
             ctx.font = '16px Roboto';
             ctx.textAlign = 'center';
@@ -406,7 +406,7 @@ const CanvasModule = {
             return;
         }
         
-        // Service comparison data
+        // Dữ liệu so sánh dịch vụ
         const serviceData = {
             web: { cost: 70, time: 40, complexity: 50, maintenance: 30 },
             mobile: { cost: 90, time: 80, complexity: 70, maintenance: 60 },
@@ -416,7 +416,7 @@ const CanvasModule = {
         const metrics = ['cost', 'time', 'complexity', 'maintenance'];
         const metricLabels = ['Chi phí', 'Thời gian', 'Độ phức tạp', 'Bảo trì'];
         
-        // Draw comparison bars
+        // Vẽ các thanh so sánh
         const barHeight = 30;
         const barSpacing = 50;
         const startY = 50;
@@ -424,13 +424,13 @@ const CanvasModule = {
         metrics.forEach((metric, metricIndex) => {
             const y = startY + metricIndex * barSpacing;
             
-            // Draw metric label
+            // Vẽ nhãn chỉ số
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.font = '14px Roboto';
             ctx.textAlign = 'left';
             ctx.fillText(metricLabels[metricIndex], 10, y + barHeight / 2 + 5);
             
-            // Draw bars for each selected service
+            // Vẽ các thanh cho mỗi dịch vụ được chọn
             selectedServices.forEach((service, serviceIndex) => {
                 const value = serviceData[service] ? serviceData[service][metric] : 0;
                 const barWidth = (value / 100) * (width - 150);
@@ -445,7 +445,7 @@ const CanvasModule = {
                 ctx.fillStyle = colors[serviceIndex % colors.length];
                 ctx.fillRect(x, y, barWidth, barHeight - 10);
                 
-                // Add value label
+                // Thêm nhãn giá trị
                 ctx.fillStyle = '#ffffff';
                 ctx.font = '12px Roboto';
                 ctx.textAlign = 'left';
@@ -453,11 +453,11 @@ const CanvasModule = {
             });
         });
         
-        // Draw legend
+        // Vẽ chú giải
         this.drawLegend(ctx, selectedServices, width - 150, startY);
     },
 
-    // Draw legend for charts
+    // Vẽ chú giải cho biểu đồ
     drawLegend: function(ctx, items, x, y) {
         const colors = [
             this.config.chartColors.primary,
@@ -474,11 +474,11 @@ const CanvasModule = {
         items.forEach((item, index) => {
             const legendY = y + index * 25;
             
-            // Draw color box
+            // Vẽ ô màu
             ctx.fillStyle = colors[index % colors.length];
             ctx.fillRect(x, legendY, 15, 15);
             
-            // Draw label
+            // Vẽ nhãn
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.font = '12px Roboto';
             ctx.textAlign = 'left';
@@ -486,7 +486,7 @@ const CanvasModule = {
         });
     },
 
-    // Setup product canvases
+    // Thiết lập các canvas sản phẩm
     setupProductCanvases: function() {
         const productCanvases = document.querySelectorAll('.product-canvas');
         
@@ -495,20 +495,20 @@ const CanvasModule = {
             this.drawProductVisualization(canvas, productType);
         });
 
-        // Product comparison
+        // So sánh sản phẩm
         const comparisonCanvas = document.getElementById('productComparisonCanvas');
         if (comparisonCanvas) {
             this.setupProductComparison(comparisonCanvas);
         }
 
-        // Product demo
+        // Demo sản phẩm
         const demoCanvas = document.getElementById('demoCanvas');
         if (demoCanvas) {
             this.setupProductDemo(demoCanvas);
         }
     },
 
-    // Draw product visualization
+    // Vẽ trực quan hóa sản phẩm
     drawProductVisualization: function(canvas, productType) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -516,7 +516,7 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // Background gradient
+        // Nền gradient
         const gradient = ctx.createLinearGradient(0, 0, width, height);
         gradient.addColorStop(0, this.config.chartColors.primary + '10');
         gradient.addColorStop(1, this.config.chartColors.secondary + '05');
@@ -545,13 +545,13 @@ const CanvasModule = {
         }
     },
 
-    // Draw ERP interface mockup
+    // Vẽ mô phỏng giao diện ERP
     drawERPInterface: function(ctx, width, height) {
-        // Draw dashboard elements
+        // Vẽ các yếu tố bảng điều khiển
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(10, 10, width - 20, 30);
         
-        // Draw cards
+        // Vẽ các thẻ
         const cardWidth = (width - 40) / 3;
         for (let i = 0; i < 3; i++) {
             const x = 10 + i * (cardWidth + 10);
@@ -562,7 +562,7 @@ const CanvasModule = {
             ctx.strokeStyle = this.config.chartColors.secondary;
             ctx.strokeRect(x, y, cardWidth, 60);
             
-            // Mini chart in card
+            // Biểu đồ nhỏ trong thẻ
             ctx.fillStyle = this.config.chartColors.accent;
             for (let j = 0; j < 5; j++) {
                 const barHeight = Math.random() * 20 + 5;
@@ -570,13 +570,13 @@ const CanvasModule = {
             }
         }
         
-        // Draw table
+        // Vẽ bảng
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(10, 130, width - 20, height - 140);
         ctx.strokeStyle = this.config.chartColors.secondary;
         ctx.strokeRect(10, 130, width - 20, height - 140);
         
-        // Table headers
+        // Tiêu đề bảng
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(10, 130, width - 20, 25);
         
@@ -588,9 +588,9 @@ const CanvasModule = {
         ctx.fillText('Giá', 200, 147);
     },
 
-    // Draw E-commerce interface
+    // Vẽ giao diện thương mại điện tử
     drawEcommerceInterface: function(ctx, width, height) {
-        // Product grid
+        // Lưới sản phẩm
         const productSize = 60;
         const cols = Math.floor((width - 20) / (productSize + 10));
         const rows = Math.floor((height - 60) / (productSize + 10));
@@ -600,39 +600,39 @@ const CanvasModule = {
                 const x = 10 + col * (productSize + 10);
                 const y = 50 + row * (productSize + 10);
                 
-                // Product card
+                // Thẻ sản phẩm
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(x, y, productSize, productSize);
                 ctx.strokeStyle = this.config.chartColors.secondary;
                 ctx.strokeRect(x, y, productSize, productSize);
                 
-                // Product image placeholder
+                // Nền hình ảnh sản phẩm
                 ctx.fillStyle = this.config.chartColors.accent + '50';
                 ctx.fillRect(x + 5, y + 5, productSize - 10, 35);
                 
-                // Price bar
+                // Thanh giá
                 ctx.fillStyle = this.config.chartColors.primary;
                 ctx.fillRect(x + 5, y + 45, productSize - 10, 10);
             }
         }
         
-        // Header
+        // Đầu trang
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(0, 0, width, 40);
         
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 14px Roboto';
         ctx.textAlign = 'center';
-        ctx.fillText('E-Commerce Platform', width / 2, 25);
+        ctx.fillText('Nền tảng Thương mại điện tử', width / 2, 25);
     },
 
-    // Draw Delivery tracking interface
+    // Vẽ giao diện theo dõi giao hàng
     drawDeliveryInterface: function(ctx, width, height) {
-        // Map background
+        // Nền bản đồ
         ctx.fillStyle = this.config.chartColors.success + '20';
         ctx.fillRect(0, 0, width, height);
         
-        // Route line
+        // Đường đi
         ctx.strokeStyle = this.config.chartColors.primary;
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -640,7 +640,7 @@ const CanvasModule = {
         ctx.quadraticCurveTo(width / 2, 40, width - 20, height / 2);
         ctx.stroke();
         
-        // Delivery points
+        // Các điểm giao hàng
         const points = [
             { x: 20, y: height - 40, status: 'completed' },
             { x: width / 3, y: height / 2, status: 'current' },
@@ -659,7 +659,7 @@ const CanvasModule = {
             ctx.fill();
             
             if (point.status === 'current') {
-                // Pulsing effect for current location
+                // Hiệu ứng nhấp nháy cho vị trí hiện tại
                 ctx.strokeStyle = color;
                 ctx.lineWidth = 2;
                 ctx.beginPath();
@@ -668,7 +668,7 @@ const CanvasModule = {
             }
         });
         
-        // Info panel
+        // Bảng thông tin
         ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
         ctx.fillRect(10, 10, 150, 80);
         ctx.strokeStyle = this.config.chartColors.secondary;
@@ -682,14 +682,14 @@ const CanvasModule = {
         ctx.fillText('ETA: 15 phút', 20, 70);
     },
 
-    // Draw Smart Home interface
+    // Vẽ giao diện nhà thông minh
     drawSmartHomeInterface: function(ctx, width, height) {
-        // House outline
+        // Hình dạng ngôi nhà
         ctx.strokeStyle = this.config.chartColors.primary;
         ctx.lineWidth = 2;
         ctx.beginPath();
         
-        // House shape
+        // Hình dạng ngôi nhà
         ctx.moveTo(width / 2, 20);
         ctx.lineTo(width - 20, height / 3);
         ctx.lineTo(width - 20, height - 20);
@@ -698,14 +698,14 @@ const CanvasModule = {
         ctx.closePath();
         ctx.stroke();
         
-        // Roof
+        // Mái nhà
         ctx.beginPath();
         ctx.moveTo(20, height / 3);
         ctx.lineTo(width / 2, 20);
         ctx.lineTo(width - 20, height / 3);
         ctx.stroke();
         
-        // Smart devices
+        // Các thiết bị thông minh
         const devices = [
             { x: width / 4, y: height / 2, type: 'light', active: true },
             { x: 3 * width / 4, y: height / 2, type: 'thermostat', active: false },
@@ -721,7 +721,7 @@ const CanvasModule = {
             ctx.arc(device.x, device.y, 12, 0, 2 * Math.PI);
             ctx.fill();
             
-            // Device icon
+            // Biểu tượng thiết bị
             ctx.fillStyle = '#ffffff';
             ctx.font = '12px Roboto';
             ctx.textAlign = 'center';
@@ -731,7 +731,7 @@ const CanvasModule = {
             ctx.fillText(icon, device.x, device.y + 4);
             
             if (device.active) {
-                // Connection lines
+                // Đường kết nối
                 ctx.strokeStyle = color + '50';
                 ctx.lineWidth = 1;
                 ctx.beginPath();
@@ -741,7 +741,7 @@ const CanvasModule = {
             }
         });
         
-        // Central hub
+        // Hub trung tâm
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.beginPath();
         ctx.arc(width / 2, height / 4, 15, 0, 2 * Math.PI);
@@ -753,19 +753,19 @@ const CanvasModule = {
         ctx.fillText('HUB', width / 2, height / 4 + 4);
     },
 
-    // Draw Analytics interface
+    // Vẽ giao diện phân tích
     drawAnalyticsInterface: function(ctx, width, height) {
-        // Dashboard layout
+        // Bố cục bảng điều khiển
         const margin = 10;
         const cardHeight = (height - 40) / 2;
         
-        // Chart 1: Line chart
+        // Biểu đồ 1: Biểu đồ đường
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(margin, margin, width / 2 - margin * 1.5, cardHeight);
         ctx.strokeStyle = this.config.chartColors.secondary;
         ctx.strokeRect(margin, margin, width / 2 - margin * 1.5, cardHeight);
         
-        // Draw line chart
+        // Vẽ biểu đồ đường
         const points = [
             { x: 20, y: cardHeight - 20 },
             { x: 40, y: cardHeight - 40 },
@@ -784,7 +784,7 @@ const CanvasModule = {
         });
         ctx.stroke();
         
-        // Chart 2: Pie chart
+        // Biểu đồ 2: Biểu đồ hình tròn
         const pieX = width / 2 + width / 4;
         const pieY = margin + cardHeight / 2;
         const pieRadius = Math.min(width / 4, cardHeight) / 3;
@@ -817,7 +817,7 @@ const CanvasModule = {
             currentAngle += sliceAngle;
         });
         
-        // Chart 3: Bar chart
+        // Biểu đồ 3: Biểu đồ cột
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(margin, cardHeight + 20, width - margin * 2, cardHeight);
         ctx.strokeStyle = this.config.chartColors.secondary;
@@ -836,9 +836,9 @@ const CanvasModule = {
         });
     },
 
-    // Draw Learning platform interface
+    // Vẽ giao diện nền tảng học tập
     drawLearningInterface: function(ctx, width, height) {
-        // Course grid
+        // Lưới khóa học
         const courseWidth = (width - 40) / 3;
         const courseHeight = (height - 60) / 2;
         
@@ -847,17 +847,17 @@ const CanvasModule = {
                 const x = 10 + col * (courseWidth + 10);
                 const y = 40 + row * (courseHeight + 10);
                 
-                // Course card
+                // Thẻ khóa học
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(x, y, courseWidth, courseHeight);
                 ctx.strokeStyle = this.config.chartColors.secondary;
                 ctx.strokeRect(x, y, courseWidth, courseHeight);
                 
-                // Video preview
+                // Xem trước video
                 ctx.fillStyle = this.config.chartColors.primary + '30';
                 ctx.fillRect(x + 5, y + 5, courseWidth - 10, courseHeight / 2);
                 
-                // Play button
+                // Nút phát
                 ctx.fillStyle = this.config.chartColors.primary;
                 ctx.beginPath();
                 ctx.moveTo(x + courseWidth / 2 - 8, y + courseHeight / 4 - 6);
@@ -866,7 +866,7 @@ const CanvasModule = {
                 ctx.closePath();
                 ctx.fill();
                 
-                // Progress bar
+                // Thanh tiến trình
                 const progress = Math.random();
                 ctx.fillStyle = this.config.chartColors.secondary + '50';
                 ctx.fillRect(x + 5, y + courseHeight - 15, courseWidth - 10, 8);
@@ -875,17 +875,17 @@ const CanvasModule = {
             }
         }
         
-        // Header
+        // Đầu trang
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(0, 0, width, 30);
         
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 12px Roboto';
         ctx.textAlign = 'center';
-        ctx.fillText('TechViet Learning Platform', width / 2, 20);
+        ctx.fillText('Nền tảng Học tập TechViet', width / 2, 20);
     },
 
-    // Setup product comparison
+    // Thiết lập so sánh sản phẩm
     setupProductComparison: function(canvas) {
         const selectors = document.querySelectorAll('.product-selector');
         
@@ -898,7 +898,7 @@ const CanvasModule = {
         this.updateProductComparison(canvas);
     },
 
-    // Update product comparison
+    // Cập nhật so sánh sản phẩm
     updateProductComparison: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -917,7 +917,7 @@ const CanvasModule = {
             return;
         }
         
-        // Product comparison data
+        // Dữ liệu so sánh sản phẩm
         const productData = {
             erp: { performance: 85, scalability: 90, usability: 75, cost: 70 },
             ecommerce: { performance: 80, scalability: 85, usability: 90, cost: 60 },
@@ -928,13 +928,13 @@ const CanvasModule = {
         const metrics = ['performance', 'scalability', 'usability', 'cost'];
         const metricLabels = ['Hiệu suất', 'Khả năng mở rộng', 'Dễ sử dụng', 'Chi phí'];
         
-        // Draw radar chart comparison
+        // Vẽ biểu đồ radar so sánh
         const centerX = width / 2;
         const centerY = height / 2;
         const radius = Math.min(width, height) / 3;
         const angleStep = (2 * Math.PI) / metrics.length;
         
-        // Draw grid
+        // Vẽ lưới
         ctx.strokeStyle = this.config.chartColors.secondary + '30';
         ctx.lineWidth = 1;
         
@@ -945,7 +945,7 @@ const CanvasModule = {
             ctx.stroke();
         }
         
-        // Draw axes and labels
+        // Vẽ trục và nhãn
         for (let i = 0; i < metrics.length; i++) {
             const angle = i * angleStep - Math.PI / 2;
             const x = centerX + Math.cos(angle) * radius;
@@ -956,7 +956,7 @@ const CanvasModule = {
             ctx.lineTo(x, y);
             ctx.stroke();
             
-            // Labels
+            // Nhãn
             const labelX = centerX + Math.cos(angle) * (radius + 20);
             const labelY = centerY + Math.sin(angle) * (radius + 20);
             
@@ -966,7 +966,7 @@ const CanvasModule = {
             ctx.fillText(metricLabels[i], labelX, labelY);
         }
         
-        // Draw product 1 data
+        // Vẽ dữ liệu sản phẩm 1
         if (productData[product1]) {
             ctx.beginPath();
             ctx.strokeStyle = this.config.chartColors.primary;
@@ -991,7 +991,7 @@ const CanvasModule = {
             ctx.stroke();
         }
         
-        // Draw product 2 data
+        // Vẽ dữ liệu sản phẩm 2
         if (productData[product2]) {
             ctx.beginPath();
             ctx.strokeStyle = this.config.chartColors.accent;
@@ -1016,7 +1016,7 @@ const CanvasModule = {
             ctx.stroke();
         }
         
-        // Legend
+        // Chú giải
         const productNames = {
             erp: 'TechViet ERP',
             ecommerce: 'TechViet Commerce',
@@ -1037,7 +1037,7 @@ const CanvasModule = {
         ctx.fillText(productNames[product2] || product2, 45, 57);
     },
 
-    // Setup product demo
+    // Thiết lập demo sản phẩm
     setupProductDemo: function(canvas) {
         const demoButtons = document.querySelectorAll('.demo-btn');
         
@@ -1051,11 +1051,11 @@ const CanvasModule = {
             });
         });
         
-        // Initial demo
+        // Demo ban đầu
         this.updateProductDemo(canvas, 'dashboard');
     },
 
-    // Update product demo
+    // Cập nhật demo sản phẩm
     updateProductDemo: function(canvas, demoType) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -1063,7 +1063,7 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // Demo background
+        // Nền demo
         ctx.fillStyle = '#f8fafc';
         ctx.fillRect(0, 0, width, height);
         
@@ -1080,9 +1080,9 @@ const CanvasModule = {
         }
     },
 
-    // Draw dashboard demo
+    // Vẽ demo bảng điều khiển
     drawDashboardDemo: function(ctx, width, height) {
-        // Header
+        // Đầu trang
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(0, 0, width, 60);
         
@@ -1091,11 +1091,11 @@ const CanvasModule = {
         ctx.textAlign = 'left';
         ctx.fillText('Analytics Dashboard', 20, 35);
         
-        // Sidebar
+        // Thanh bên
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 60, 200, height - 60);
         
-        // Menu items
+        // Các mục menu
         const menuItems = ['Dashboard', 'Analytics', 'Reports', 'Settings'];
         menuItems.forEach((item, index) => {
             const y = 100 + index * 40;
@@ -1111,34 +1111,34 @@ const CanvasModule = {
             ctx.fillText(item, 20, y);
         });
         
-        // Main content area
+        // Khu vực nội dung chính
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(220, 80, width - 240, height - 100);
         
-        // Charts and widgets
+        // Biểu đồ và tiện ích
         this.drawMiniChart(ctx, 240, 100, 200, 120, 'line');
         this.drawMiniChart(ctx, 460, 100, 200, 120, 'bar');
         this.drawMiniChart(ctx, 240, 240, 200, 120, 'pie');
         this.drawMiniChart(ctx, 460, 240, 200, 120, 'area');
     },
 
-    // Draw mobile demo
+    // Vẽ demo di động
     drawMobileDemo: function(ctx, width, height) {
-        // Phone frame
+        // Khung điện thoại
         const phoneWidth = 250;
         const phoneHeight = 450;
         const phoneX = (width - phoneWidth) / 2;
         const phoneY = (height - phoneHeight) / 2;
         
-        // Phone outline
+        // Đường viền điện thoại
         ctx.fillStyle = '#333333';
         ctx.fillRect(phoneX - 10, phoneY - 30, phoneWidth + 20, phoneHeight + 60);
         
-        // Screen
+        // Màn hình
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(phoneX, phoneY, phoneWidth, phoneHeight);
         
-        // Status bar
+        // Thanh trạng thái
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(phoneX, phoneY, phoneWidth, 30);
         
@@ -1149,32 +1149,32 @@ const CanvasModule = {
         ctx.textAlign = 'right';
         ctx.fillText('100%', phoneX + phoneWidth - 10, phoneY + 20);
         
-        // App content
+        // Nội dung ứng dụng
         const cardHeight = 80;
         const cardMargin = 15;
         
         for (let i = 0; i < 4; i++) {
             const cardY = phoneY + 50 + i * (cardHeight + cardMargin);
             
-            // Card background
+            // Nền thẻ
             ctx.fillStyle = '#f8fafc';
             ctx.fillRect(phoneX + 15, cardY, phoneWidth - 30, cardHeight);
             
-            // Card content
+            // Nội dung thẻ
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.fillRect(phoneX + 25, cardY + 10, 40, 40);
             
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.font = '14px Roboto';
             ctx.textAlign = 'left';
-            ctx.fillText(`Feature ${i + 1}`, phoneX + 80, cardY + 25);
+            ctx.fillText(`Tính năng ${i + 1}`, phoneX + 80, cardY + 25);
             
             ctx.fillStyle = this.config.chartColors.secondary;
             ctx.font = '12px Roboto';
-            ctx.fillText('Description text here', phoneX + 80, cardY + 45);
+            ctx.fillText('Mô tả tính năng ở đây', phoneX + 80, cardY + 45);
         }
         
-        // Bottom navigation
+        // Điều hướng dưới cùng
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(phoneX, phoneY + phoneHeight - 60, phoneWidth, 60);
         
@@ -1194,13 +1194,13 @@ const CanvasModule = {
         });
     },
 
-    // Draw IoT demo
+    // Vẽ demo IoT
     drawIoTDemo: function(ctx, width, height) {
-        // Network visualization
+        // Trực quan hóa mạng
         const centerX = width / 2;
         const centerY = height / 2;
         
-        // Central hub
+        // Hub trung tâm
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.beginPath();
         ctx.arc(centerX, centerY, 40, 0, 2 * Math.PI);
@@ -1211,7 +1211,7 @@ const CanvasModule = {
         ctx.textAlign = 'center';
         ctx.fillText('IoT Hub', centerX, centerY);
         
-        // Connected devices
+        // Các thiết bị kết nối
         const devices = [
             { x: centerX - 150, y: centerY - 100, name: 'Temperature', value: '24°C', color: this.config.chartColors.accent },
             { x: centerX + 150, y: centerY - 100, name: 'Humidity', value: '65%', color: this.config.chartColors.success },
@@ -1222,7 +1222,7 @@ const CanvasModule = {
         ];
         
         devices.forEach(device => {
-            // Connection lines
+            // Đường kết nối
             ctx.strokeStyle = device.color + '50';
             ctx.lineWidth = 2;
             ctx.beginPath();
@@ -1230,20 +1230,20 @@ const CanvasModule = {
             ctx.lineTo(device.x, device.y);
             ctx.stroke();
             
-            // Device node
+            // Nút thiết bị
             ctx.fillStyle = device.color;
             ctx.beginPath();
             ctx.arc(device.x, device.y, 25, 0, 2 * Math.PI);
             ctx.fill();
             
-            // Device info
+            // Thông tin thiết bị
             ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 10px Roboto';
             ctx.textAlign = 'center';
             ctx.fillText(device.name, device.x, device.y - 5);
             ctx.fillText(device.value, device.x, device.y + 8);
             
-            // Data flow animation
+            // Hoạt ảnh dòng dữ liệu
             const time = Date.now() * 0.003;
             const flowProgress = (time + device.x + device.y) % 1;
             const flowX = centerX + (device.x - centerX) * flowProgress;
@@ -1255,7 +1255,7 @@ const CanvasModule = {
             ctx.fill();
         });
         
-        // Status panel
+        // Bảng trạng thái
         ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
         ctx.fillRect(20, 20, 200, 100);
         ctx.strokeStyle = this.config.chartColors.secondary;
@@ -1264,17 +1264,17 @@ const CanvasModule = {
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.font = 'bold 14px Roboto';
         ctx.textAlign = 'left';
-        ctx.fillText('System Status', 30, 40);
+        ctx.fillText('Trạng thái Hệ thống', 30, 40);
         
         ctx.font = '12px Roboto';
-        ctx.fillText('Devices: 6/6 Online', 30, 60);
-        ctx.fillText('Network: Strong', 30, 80);
-        ctx.fillText('Last Update: Now', 30, 100);
+        ctx.fillText('Thiết bị: 6/6 Đang trực tuyến', 30, 60);
+        ctx.fillText('Mạng: Mạnh', 30, 80);
+        ctx.fillText('Cập nhật lần cuối: Bây giờ', 30, 100);
     },
 
-    // Draw mini chart helper
+    // Vẽ biểu đồ nhỏ
     drawMiniChart: function(ctx, x, y, width, height, type) {
-        // Chart background
+        // Nền biểu đồ
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(x, y, width, height);
         ctx.strokeStyle = this.config.chartColors.secondary + '50';
@@ -1286,7 +1286,7 @@ const CanvasModule = {
         
         switch (type) {
             case 'line':
-                // Line chart
+                // Biểu đồ đường
                 const points = [
                     { x: 0, y: 0.8 },
                     { x: 0.2, y: 0.6 },
@@ -1315,7 +1315,7 @@ const CanvasModule = {
                 break;
                 
             case 'bar':
-                // Bar chart
+                // Biểu đồ cột
                 const barData = [0.6, 0.8, 0.4, 0.9, 0.7];
                 const barWidth = chartWidth / barData.length;
                 
@@ -1330,7 +1330,7 @@ const CanvasModule = {
                 break;
                 
             case 'pie':
-                // Pie chart
+                // Biểu đồ hình tròn
                 const pieData = [30, 25, 20, 25];
                 const colors = [
                     this.config.chartColors.primary,
@@ -1359,7 +1359,7 @@ const CanvasModule = {
                 break;
                 
             case 'area':
-                // Area chart
+                // Biểu đồ diện tích
                 const areaPoints = [
                     { x: 0, y: 0.7 },
                     { x: 0.25, y: 0.5 },
@@ -1390,15 +1390,15 @@ const CanvasModule = {
         }
     },
 
-    // Setup blog canvases
+    // Thiết lập các canvas blog
     setupBlogCanvases: function() {
-        // Featured canvas
+        // Canvas nổi bật
         const featuredCanvas = document.getElementById('featuredCanvas');
         if (featuredCanvas) {
             this.drawBlogFeaturedVisualization(featuredCanvas);
         }
 
-        // Blog post canvases
+        // Các canvas bài viết blog
         const postCanvases = document.querySelectorAll('.post-canvas');
         postCanvases.forEach(canvas => {
             const visualType = canvas.getAttribute('data-visual');
@@ -1406,7 +1406,7 @@ const CanvasModule = {
         });
     },
 
-    // Draw blog featured visualization
+    // Vẽ trực quan hóa nổi bật của blog
     drawBlogFeaturedVisualization: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -1414,17 +1414,17 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // AI/ML themed visualization
+        // Trực quan hóa theo chủ đề AI/ML
         this.drawNeuralNetwork(ctx, width, height);
     },
 
-    // Draw neural network visualization
+    // Vẽ trực quan hóa mạng nơ-ron
     drawNeuralNetwork: function(ctx, width, height) {
         const layers = [4, 6, 6, 3];
         const layerSpacing = width / (layers.length + 1);
         const nodeRadius = 8;
         
-        // Calculate node positions
+        // Tính toán vị trí các nút
         const nodes = [];
         layers.forEach((layerSize, layerIndex) => {
             const layerNodes = [];
@@ -1438,7 +1438,7 @@ const CanvasModule = {
             nodes.push(layerNodes);
         });
         
-        // Draw connections
+        // Vẽ các kết nối
         ctx.strokeStyle = this.config.chartColors.primary + '30';
         ctx.lineWidth = 1;
         
@@ -1453,7 +1453,7 @@ const CanvasModule = {
             });
         }
         
-        // Draw nodes
+        // Vẽ các nút
         nodes.forEach((layer, layerIndex) => {
             layer.forEach(node => {
                 const time = Date.now() * 0.002;
@@ -1467,7 +1467,7 @@ const CanvasModule = {
                 ctx.arc(node.x, node.y, nodeRadius * pulse, 0, 2 * Math.PI);
                 ctx.fill();
                 
-                // Node glow effect
+                // Hiệu ứng phát sáng nút
                 ctx.strokeStyle = ctx.fillStyle;
                 ctx.lineWidth = 2;
                 ctx.beginPath();
@@ -1476,7 +1476,7 @@ const CanvasModule = {
             });
         });
         
-        // Add labels
+        // Thêm nhãn
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.font = '12px Roboto';
         ctx.textAlign = 'center';
@@ -1485,7 +1485,7 @@ const CanvasModule = {
         ctx.fillText('Output', layerSpacing * (layers.length), height - 10);
     },
 
-    // Draw blog post visualization
+    // Vẽ trực quan hóa bài viết blog
     drawBlogPostVisualization: function(canvas, visualType) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -1493,7 +1493,7 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // Background gradient
+        // Nền gradient
         const gradient = ctx.createLinearGradient(0, 0, width, height);
         gradient.addColorStop(0, this.config.chartColors.primary + '10');
         gradient.addColorStop(1, this.config.chartColors.secondary + '05');
@@ -1522,9 +1522,9 @@ const CanvasModule = {
         }
     },
 
-    // Draw AI chart
+    // Vẽ biểu đồ AI
     drawAIChart: function(ctx, width, height) {
-        // Growth curve for AI adoption
+        // Đường tăng trưởng cho sự chấp nhận AI
         ctx.strokeStyle = this.config.chartColors.gradient1;
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -1542,7 +1542,7 @@ const CanvasModule = {
         
         ctx.stroke();
         
-        // Add data points
+        // Thêm các điểm dữ liệu
         const points = [0.2, 0.4, 0.6, 0.8];
         points.forEach(point => {
             const x = width * point;
@@ -1554,16 +1554,16 @@ const CanvasModule = {
             ctx.fill();
         });
         
-        // Labels
+        // Nhãn
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.font = '12px Roboto';
         ctx.textAlign = 'center';
-        ctx.fillText('AI Adoption Growth', width / 2, 20);
+        ctx.fillText('Tăng trưởng sự chấp nhận AI', width / 2, 20);
     },
 
-    // Draw web performance chart
+    // Vẽ biểu đồ hiệu suất web
     drawWebPerformanceChart: function(ctx, width, height) {
-        // Performance metrics bars
+        // Các thanh chỉ số hiệu suất
         const metrics = ['LCP', 'FID', 'CLS', 'FCP'];
         const values = [2.1, 0.08, 0.05, 1.2];
         const targets = [2.5, 0.1, 0.1, 1.8];
@@ -1574,18 +1574,18 @@ const CanvasModule = {
             const x = index * barWidth + 20;
             const maxHeight = height - 60;
             
-            // Target bar (background)
+            // Thanh mục tiêu (nền)
             const targetHeight = (targets[index] / Math.max(...targets)) * maxHeight;
             ctx.fillStyle = this.config.chartColors.secondary + '30';
             ctx.fillRect(x, height - 30 - targetHeight, barWidth - 40, targetHeight);
             
-            // Actual value bar
+            // Thanh giá trị thực tế
             const valueHeight = (values[index] / Math.max(...targets)) * maxHeight;
             const color = values[index] <= targets[index] ? this.config.chartColors.success : this.config.chartColors.warning;
             ctx.fillStyle = color;
             ctx.fillRect(x, height - 30 - valueHeight, barWidth - 40, valueHeight);
             
-            // Metric label
+            // Nhãn chỉ số
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.font = '12px Roboto';
             ctx.textAlign = 'center';
@@ -1593,9 +1593,9 @@ const CanvasModule = {
         });
     },
 
-    // Draw mobile trends chart
+    // Vẽ biểu đồ xu hướng di động
     drawMobileTrendsChart: function(ctx, width, height) {
-        // Two trend lines: React Native vs Flutter
+        // Hai đường xu hướng: React Native so với Flutter
         const years = [2019, 2020, 2021, 2022, 2023, 2024];
         const reactNativeData = [60, 65, 70, 68, 65, 62];
         const flutterData = [20, 25, 35, 45, 55, 58];
@@ -1603,7 +1603,7 @@ const CanvasModule = {
         const stepX = width / (years.length - 1);
         const maxValue = Math.max(...reactNativeData, ...flutterData);
         
-        // React Native line
+        // Đường React Native
         ctx.strokeStyle = this.config.chartColors.primary;
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -1621,7 +1621,7 @@ const CanvasModule = {
         
         ctx.stroke();
         
-        // Flutter line
+        // Đường Flutter
         ctx.strokeStyle = this.config.chartColors.accent;
         ctx.lineWidth = 3;
         ctx.beginPath();
@@ -1639,7 +1639,7 @@ const CanvasModule = {
         
         ctx.stroke();
         
-        // Legend
+        // Chú giải
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(20, 20, 15, 10);
         ctx.fillStyle = this.config.chartColors.primary;
@@ -1653,9 +1653,9 @@ const CanvasModule = {
         ctx.fillText('Flutter', 175, 30);
     },
 
-    // Draw cloud architecture
+    // Vẽ kiến trúc đám mây
     drawCloudArchitecture: function(ctx, width, height) {
-        // Cloud services diagram
+        // Sơ đồ các dịch vụ đám mây
         const services = [
             { x: width * 0.2, y: height * 0.3, name: 'API\nGateway', size: 30 },
             { x: width * 0.5, y: height * 0.2, name: 'Load\nBalancer', size: 35 },
@@ -1665,7 +1665,7 @@ const CanvasModule = {
             { x: width * 0.5, y: height * 0.8, name: 'Monitoring', size: 25 }
         ];
         
-        // Draw connections
+        // Vẽ các kết nối
         ctx.strokeStyle = this.config.chartColors.primary + '50';
         ctx.lineWidth = 2;
         
@@ -1680,7 +1680,7 @@ const CanvasModule = {
             ctx.stroke();
         });
         
-        // Draw services
+        // Vẽ các dịch vụ
         services.forEach((service, index) => {
             const colors = [
                 this.config.chartColors.primary,
@@ -1696,7 +1696,7 @@ const CanvasModule = {
             ctx.arc(service.x, service.y, service.size, 0, 2 * Math.PI);
             ctx.fill();
             
-            // Service labels
+            // Nhãn dịch vụ
             ctx.fillStyle = '#ffffff';
             ctx.font = '10px Roboto';
             ctx.textAlign = 'center';
@@ -1707,9 +1707,9 @@ const CanvasModule = {
         });
     },
 
-    // Draw security trends
+    // Vẽ xu hướng bảo mật
     drawSecurityTrends: function(ctx, width, height) {
-        // Security threat timeline
+        // Dòng thời gian các mối đe dọa bảo mật
         const threats = [
             { month: 'Jan', attacks: 120 },
             { month: 'Feb', attacks: 95 },
@@ -1727,7 +1727,7 @@ const CanvasModule = {
             const barHeight = (threat.attacks / maxAttacks) * (height - 60);
             const y = height - 30 - barHeight;
             
-            // Gradient based on threat level
+            // Gradient dựa trên mức độ đe dọa
             const gradient = ctx.createLinearGradient(0, y, 0, y + barHeight);
             if (threat.attacks > 130) {
                 gradient.addColorStop(0, this.config.chartColors.error);
@@ -1743,23 +1743,23 @@ const CanvasModule = {
             ctx.fillStyle = gradient;
             ctx.fillRect(x, y, barWidth - 20, barHeight);
             
-            // Month labels
+            // Nhãn tháng
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.font = '10px Roboto';
             ctx.textAlign = 'center';
             ctx.fillText(threat.month, x + (barWidth - 20) / 2, height - 10);
         });
         
-        // Title
+        // Tiêu đề
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.font = 'bold 12px Roboto';
         ctx.textAlign = 'center';
-        ctx.fillText('Security Incidents', width / 2, 20);
+        ctx.fillText('Sự cố bảo mật', width / 2, 20);
     },
 
-    // Draw API design
+    // Vẽ thiết kế API
     drawAPIDesign: function(ctx, width, height) {
-        // REST API flow diagram
+        // Sơ đồ luồng API REST
         const endpoints = [
             { x: 50, y: height / 2, method: 'GET', path: '/users' },
             { x: width / 3, y: height * 0.3, method: 'POST', path: '/users' },
@@ -1774,11 +1774,11 @@ const CanvasModule = {
             'DELETE': this.config.chartColors.error
         };
         
-        // Draw API flow
+        // Vẽ luồng API
         ctx.strokeStyle = this.config.chartColors.secondary;
         ctx.lineWidth = 2;
         
-        // Connect endpoints
+        // Kết nối các điểm cuối
         for (let i = 0; i < endpoints.length - 1; i++) {
             ctx.beginPath();
             ctx.moveTo(endpoints[i].x, endpoints[i].y);
@@ -1786,24 +1786,24 @@ const CanvasModule = {
             ctx.stroke();
         }
         
-        // Draw endpoints
+        // Vẽ các điểm cuối
         endpoints.forEach(endpoint => {
             ctx.fillStyle = methodColors[endpoint.method];
             ctx.fillRect(endpoint.x - 30, endpoint.y - 15, 60, 30);
             
-            // Method label
+            // Nhãn phương thức
             ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 10px Roboto';
             ctx.textAlign = 'center';
             ctx.fillText(endpoint.method, endpoint.x, endpoint.y - 2);
             
-            // Path label
+            // Nhãn đường dẫn
             ctx.fillStyle = this.config.chartColors.primary;
             ctx.font = '8px Roboto';
             ctx.fillText(endpoint.path, endpoint.x, endpoint.y + 25);
         });
         
-        // Database
+        // Cơ sở dữ liệu
         ctx.fillStyle = this.config.chartColors.gradient1;
         ctx.fillRect(width - 80, height / 2 - 20, 60, 40);
         
@@ -1813,7 +1813,7 @@ const CanvasModule = {
         ctx.fillText('Database', width - 50, height / 2 + 3);
     },
 
-    // Draw map visualization
+    // Vẽ trực quan hóa bản đồ
     drawMapVisualization: function(canvas) {
         const ctx = canvas.getContext('2d');
         const width = canvas.width;
@@ -1821,18 +1821,18 @@ const CanvasModule = {
         
         ctx.clearRect(0, 0, width, height);
         
-        // Map background
+        // Nền bản đồ
         const bgGradient = ctx.createLinearGradient(0, 0, width, height);
         bgGradient.addColorStop(0, '#e8f4fd');
         bgGradient.addColorStop(1, '#b8e6ff');
         ctx.fillStyle = bgGradient;
         ctx.fillRect(0, 0, width, height);
         
-        // Grid lines for streets
+        // Các đường lưới cho các con phố
         ctx.strokeStyle = this.config.chartColors.secondary + '40';
         ctx.lineWidth = 1;
         
-        // Vertical streets
+        // Các con phố dọc
         for (let x = 0; x < width; x += 60) {
             ctx.beginPath();
             ctx.moveTo(x, 0);
@@ -1840,7 +1840,7 @@ const CanvasModule = {
             ctx.stroke();
         }
         
-        // Horizontal streets
+        // Các con phố ngang
         for (let y = 0; y < height; y += 50) {
             ctx.beginPath();
             ctx.moveTo(0, y);
@@ -1848,7 +1848,7 @@ const CanvasModule = {
             ctx.stroke();
         }
         
-        // Buildings/blocks
+        // Các tòa nhà/bloc
         const buildings = [
             { x: 20, y: 20, w: 100, h: 80 },
             { x: 140, y: 30, w: 120, h: 90 },
@@ -1867,24 +1867,24 @@ const CanvasModule = {
             ctx.strokeRect(building.x, building.y, building.w, building.h);
         });
         
-        // Office location (TechViet)
+        // Vị trí văn phòng (TechViet)
         const officeX = width / 2;
         const officeY = height / 2;
         
-        // Office building highlight
+        // Làm nổi bật tòa nhà văn phòng
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.fillRect(officeX - 40, officeY - 30, 80, 60);
         ctx.strokeStyle = this.config.chartColors.primary;
         ctx.lineWidth = 2;
         ctx.strokeRect(officeX - 40, officeY - 30, 80, 60);
         
-        // Office marker
+        // Đánh dấu văn phòng
         ctx.fillStyle = this.config.chartColors.error;
         ctx.beginPath();
         ctx.arc(officeX, officeY - 50, 15, 0, 2 * Math.PI);
         ctx.fill();
         
-        // Marker pointer
+        // Mũi tên chỉ dẫn
         ctx.beginPath();
         ctx.moveTo(officeX, officeY - 35);
         ctx.lineTo(officeX - 8, officeY - 20);
@@ -1892,13 +1892,13 @@ const CanvasModule = {
         ctx.closePath();
         ctx.fill();
         
-        // Office label
+        // Nhãn văn phòng
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 8px Roboto';
         ctx.textAlign = 'center';
         ctx.fillText('TV', officeX, officeY - 46);
         
-        // Nearby landmarks
+        // Các điểm mốc gần đó
         const landmarks = [
             { x: 150, y: 100, name: 'Metro', icon: 'M' },
             { x: 350, y: 180, name: 'Park', icon: 'P' },
@@ -1917,7 +1917,7 @@ const CanvasModule = {
             ctx.fillText(landmark.icon, landmark.x, landmark.y + 3);
         });
         
-        // Distance indicators
+        // Các chỉ dẫn khoảng cách
         ctx.strokeStyle = this.config.chartColors.primary + '50';
         ctx.lineWidth = 1;
         ctx.setLineDash([5, 5]);
@@ -1931,13 +1931,13 @@ const CanvasModule = {
         
         ctx.setLineDash([]);
         
-        // Compass
+        // La bàn
         ctx.fillStyle = this.config.chartColors.primary;
         ctx.beginPath();
         ctx.arc(width - 40, 40, 20, 0, 2 * Math.PI);
         ctx.fill();
         
-        // North arrow
+        // Mũi tên Bắc
         ctx.fillStyle = '#ffffff';
         ctx.beginPath();
         ctx.moveTo(width - 40, 25);
@@ -1952,10 +1952,10 @@ const CanvasModule = {
         ctx.fillText('N', width - 40, 50);
     },
 
-    // Animation loop for dynamic effects
+    // Vòng lặp hoạt ảnh cho các hiệu ứng động
     startAnimationLoop: function() {
         const animate = () => {
-            // Update any animated canvases
+            // Cập nhật bất kỳ canvas nào đang hoạt ảnh
             const heroCanvas = document.getElementById('heroCanvas');
             if (heroCanvas && this.utils.isInViewport(heroCanvas)) {
                 this.drawHeroVisualization(heroCanvas);
@@ -1967,7 +1967,7 @@ const CanvasModule = {
         animate();
     },
 
-    // Utility to check if element is in viewport
+    // Tiện ích để kiểm tra xem phần tử có trong viewport không
     utils: {
         isInViewport: function(element) {
             const rect = element.getBoundingClientRect();
@@ -1981,12 +1981,12 @@ const CanvasModule = {
     }
 };
 
-// Initialize Canvas Module when DOM is loaded
+// Khởi tạo Module Canvas khi DOM được tải
 document.addEventListener('DOMContentLoaded', function() {
     CanvasModule.init();
 });
 
-// Export for module systems
+// Xuất cho các hệ thống module
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = CanvasModule;
 }

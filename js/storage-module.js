@@ -1,22 +1,20 @@
-
-
 'use strict';
 
 const StorageModule = {
-    // Storage configuration
+    // Cấu hình lưu trữ
     config: {
         storagePrefix: 'techviet_',
-        expirationTime: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
-        maxStorageSize: 5 * 1024 * 1024, // 5MB limit
-        compressionThreshold: 1024 // Compress data larger than 1KB
+        expirationTime: 30 * 24 * 60 * 60 * 1000, // 30 ngày (ms)
+        maxStorageSize: 5 * 1024 * 1024, // Giới hạn 5MB
+        compressionThreshold: 1024 // Nén dữ liệu lớn hơn 1KB
     },
 
-    // Initialize storage module
+    // Khởi tạo module lưu trữ
     init: function() {
-        console.log('Initializing Storage Module...');
+        console.log('Đang khởi tạo Storage Module...');
         
         if (!this.isStorageAvailable()) {
-            console.warn('Web Storage is not available in this browser');
+            console.warn('Trình duyệt không hỗ trợ Web Storage');
             return;
         }
 
@@ -27,10 +25,10 @@ const StorageModule = {
         this.setupFormDataPersistence();
         this.setupAnalytics();
         
-        console.log('Storage Module initialized successfully');
+        console.log('Storage Module đã khởi tạo thành công');
     },
 
-    // Check if Web Storage is available
+    // Kiểm tra Web Storage có khả dụng không
     isStorageAvailable: function() {
         try {
             const test = '__storage_test__';
@@ -42,7 +40,7 @@ const StorageModule = {
         }
     },
 
-    // Get storage quota information
+    // Lấy thông tin hạn ngạch lưu trữ
     getStorageQuota: function() {
         if (navigator.storage && navigator.storage.estimate) {
             return navigator.storage.estimate().then(estimate => {
@@ -57,7 +55,7 @@ const StorageModule = {
         return Promise.resolve(null);
     },
 
-    // Set item with metadata
+    // Đặt mục với siêu dữ liệu
     setItem: function(key, value, options = {}) {
         try {
             const fullKey = this.config.storagePrefix + key;
@@ -73,36 +71,40 @@ const StorageModule = {
 
             let serializedData = JSON.stringify(data);
 
-            // Compress large data
+            // Nén dữ liệu lớn
             if (serializedData.length > this.config.compressionThreshold) {
                 try {
-                    // Simple compression using JSON stringify optimization
                     serializedData = this.compressData(serializedData);
                     data.compressed = true;
                     serializedData = JSON.stringify(data);
                 } catch (e) {
-                    console.warn('Compression failed:', e);
+                    console.warn('Nén dữ liệu không thành công:', e);
                 }
             }
 
-            // Check storage size
+            // Kiểm tra kích thước lưu trữ
             if (this.getStorageSize() + serializedData.length > this.config.maxStorageSize) {
                 this.clearOldestData();
             }
 
+            // Thử lưu và log kết quả
             storageType.setItem(fullKey, serializedData);
+            if (storageType.getItem(fullKey)) {
+                console.log(`[StorageModule] Đã lưu key: ${fullKey}`);
+            } else {
+                console.error(`[StorageModule] KHÔNG lưu được key: ${fullKey}`);
+            }
             
-            // Trigger custom event
             this.triggerStorageEvent('set', key, value);
-            
             return true;
         } catch (error) {
-            console.error('Storage setItem error:', error);
+            console.error('Lỗi khi lưu trữ setItem:', error);
+            alert('Không thể lưu dữ liệu vào localStorage. Hãy kiểm tra quyền trình duyệt hoặc bộ nhớ.');
             return false;
         }
     },
 
-    // Get item with automatic expiration check
+    // Lấy mục với kiểm tra hết hạn tự động
     getItem: function(key, options = {}) {
         try {
             const fullKey = this.config.storagePrefix + key;
@@ -115,24 +117,24 @@ const StorageModule = {
 
             let data = JSON.parse(serializedData);
 
-            // Decompress if needed
+            // Giải nén nếu cần
             if (data.compressed) {
                 try {
                     const decompressedValue = this.decompressData(data.value);
                     data.value = JSON.parse(decompressedValue);
                 } catch (e) {
-                    console.warn('Decompression failed:', e);
+                    console.warn('Giải nén không thành công:', e);
                     return null;
                 }
             }
 
-            // Check expiration
+            // Kiểm tra hết hạn
             if (data.expires && Date.now() > data.expires) {
                 this.removeItem(key, options);
                 return null;
             }
 
-            // Update access timestamp
+            // Cập nhật thời gian truy cập
             if (options.updateAccess) {
                 data.lastAccess = Date.now();
                 storageType.setItem(fullKey, JSON.stringify(data));
@@ -140,12 +142,12 @@ const StorageModule = {
 
             return data.value;
         } catch (error) {
-            console.error('Storage getItem error:', error);
+            console.error('Lỗi khi lưu trữ getItem:', error);
             return null;
         }
     },
 
-    // Remove item
+    // Xóa mục
     removeItem: function(key, options = {}) {
         try {
             const fullKey = this.config.storagePrefix + key;
@@ -156,12 +158,12 @@ const StorageModule = {
             
             return true;
         } catch (error) {
-            console.error('Storage removeItem error:', error);
+            console.error('Lỗi khi lưu trữ removeItem:', error);
             return false;
         }
     },
 
-    // Clear all app data
+    // Xóa tất cả dữ liệu ứng dụng
     clear: function(options = {}) {
         try {
             const storageType = options.session ? sessionStorage : localStorage;
@@ -174,12 +176,12 @@ const StorageModule = {
             this.triggerStorageEvent('clear', null, null);
             return true;
         } catch (error) {
-            console.error('Storage clear error:', error);
+            console.error('Lỗi khi lưu trữ clear:', error);
             return false;
         }
     },
 
-    // Get all app keys
+    // Lấy tất cả các khóa của ứng dụng
     getAllKeys: function(options = {}) {
         const storageType = options.session ? sessionStorage : localStorage;
         const keys = [];
@@ -194,7 +196,7 @@ const StorageModule = {
         return keys;
     },
 
-    // Get storage size
+    // Lấy kích thước lưu trữ
     getStorageSize: function() {
         let total = 0;
         const keys = this.getAllKeys();
@@ -209,18 +211,18 @@ const StorageModule = {
         return total;
     },
 
-    // Simple data compression
+    // Nén dữ liệu đơn giản
     compressData: function(data) {
-        // Basic string compression by removing unnecessary whitespace
+        // Nén chuỗi cơ bản bằng cách loại bỏ khoảng trắng không cần thiết
         return data.replace(/\s+/g, ' ').trim();
     },
 
-    // Simple data decompression
+    // Giải nén dữ liệu đơn giản
     decompressData: function(data) {
-        return data; // In a real implementation, this would reverse the compression
+        return data; // Trong một triển khai thực tế, điều này sẽ đảo ngược quá trình nén
     },
 
-    // Clear oldest data when storage is full
+    // Xóa dữ liệu cũ nhất khi bộ nhớ đầy
     clearOldestData: function() {
         const keys = this.getAllKeys();
         const items = [];
@@ -234,22 +236,22 @@ const StorageModule = {
                     lastAccess: data.lastAccess || data.timestamp || 0
                 });
             } catch (e) {
-                // Remove corrupted items
+                // Xóa các mục bị hỏng
                 localStorage.removeItem(key);
             }
         });
 
-        // Sort by last access time (oldest first)
+        // Sắp xếp theo thời gian truy cập cuối (cũ nhất trước)
         items.sort((a, b) => a.lastAccess - b.lastAccess);
 
-        // Remove oldest 25% of items
+        // Xóa 25% dữ liệu cũ nhất
         const removeCount = Math.ceil(items.length * 0.25);
         for (let i = 0; i < removeCount; i++) {
             localStorage.removeItem(items[i].key);
         }
     },
 
-    // Clean up expired data
+    // Dọn dẹp dữ liệu đã hết hạn
     cleanupExpiredData: function() {
         const keys = this.getAllKeys();
         
@@ -260,15 +262,15 @@ const StorageModule = {
                     localStorage.removeItem(key);
                 }
             } catch (e) {
-                // Remove corrupted items
+                // Xóa các mục bị hỏng
                 localStorage.removeItem(key);
             }
         });
     },
 
-    // Setup storage event handlers
+    // Thiết lập các trình xử lý sự kiện lưu trữ
     setupStorageHandlers: function() {
-        // Listen for storage events from other tabs
+        // Lắng nghe các sự kiện lưu trữ từ các tab khác
         window.addEventListener('storage', (e) => {
             if (e.key && e.key.startsWith(this.config.storagePrefix)) {
                 const appKey = e.key.replace(this.config.storagePrefix, '');
@@ -276,17 +278,17 @@ const StorageModule = {
             }
         });
 
-        // Periodic cleanup
+        // Dọn dẹp định kỳ
         setInterval(() => {
             this.cleanupExpiredData();
-        }, 60000); // Every minute
+        }, 60000); // Mỗi phút
     },
 
-    // Handle storage changes from other tabs
+    // Xử lý thay đổi lưu trữ từ các tab khác
     handleStorageChange: function(key, oldValue, newValue) {
         console.log(`Storage changed: ${key}`, { oldValue, newValue });
         
-        // Handle specific key changes
+        // Xử lý thay đổi của các khóa cụ thể
         switch (key) {
             case 'user_preferences':
                 this.loadUserPreferences();
@@ -297,11 +299,11 @@ const StorageModule = {
         }
     },
 
-    // User Preferences Management
+    // Quản lý sở thích người dùng
     loadUserPreferences: function() {
         const preferences = this.getItem('user_preferences') || {};
         
-        // Apply default preferences
+        // Áp dụng sở thích mặc định
         const defaultPreferences = {
             theme: 'light',
             language: 'vi',
@@ -315,62 +317,62 @@ const StorageModule = {
         this.applyUserPreferences();
     },
 
-    // Save user preferences
+    // Lưu sở thích người dùng
     saveUserPreferences: function(preferences) {
         this.userPreferences = { ...this.userPreferences, ...preferences };
         this.setItem('user_preferences', this.userPreferences);
         this.applyUserPreferences();
     },
 
-    // Apply user preferences to the UI
+    // Áp dụng sở thích người dùng vào giao diện
     applyUserPreferences: function() {
         const body = document.body;
         
-        // Apply theme
+        // Áp dụng chủ đề
         body.setAttribute('data-theme', this.userPreferences.theme);
         
-        // Apply font size
+        // Áp dụng kích thước phông chữ
         body.setAttribute('data-font-size', this.userPreferences.fontSize);
         
-        // Apply animations
+        // Áp dụng hoạt ảnh
         if (!this.userPreferences.animationsEnabled) {
             body.classList.add('no-animations');
         } else {
             body.classList.remove('no-animations');
         }
         
-        // Update UI controls
+        // Cập nhật các điều khiển giao diện
         this.updatePreferenceControls();
     },
 
-    // Update preference controls in the UI
+    // Cập nhật các điều khiển sở thích trong giao diện
     updatePreferenceControls: function() {
-        // Theme selector
+        // Bộ chọn chủ đề
         const themeSelect = document.getElementById('themeSelect');
         if (themeSelect) {
             themeSelect.value = this.userPreferences.theme;
         }
 
-        // Font size selector
+        // Bộ chọn kích thước phông chữ
         const fontSizeSelect = document.getElementById('fontSizeSelect');
         if (fontSizeSelect) {
             fontSizeSelect.value = this.userPreferences.fontSize;
         }
 
-        // Notifications toggle
+        // Công tắc thông báo
         const notificationsToggle = document.getElementById('notificationsToggle');
         if (notificationsToggle) {
             notificationsToggle.checked = this.userPreferences.notifications;
         }
 
-        // Animations toggle
+        // Công tắc hoạt ảnh
         const animationsToggle = document.getElementById('animationsToggle');
         if (animationsToggle) {
             animationsToggle.checked = this.userPreferences.animationsEnabled;
         }
     },
 
-    // Form Data Persistence
+    // Duy trì dữ liệu biểu mẫu
     setupFormDataPersistence: function() {
         const forms = document.querySelectorAll('form[data-persist]');
         
@@ -378,29 +380,29 @@ const StorageModule = {
             const formId = form.id || form.getAttribute('data-persist');
             if (!formId) return;
 
-            // Load saved form data
+            // Tải dữ liệu biểu mẫu đã lưu
             this.loadFormData(form, formId);
 
-            // Save form data on input
+            // Lưu dữ liệu biểu mẫu khi nhập
             form.addEventListener('input', (e) => {
                 this.saveFormData(form, formId);
             });
 
-            // Save on form submission
+            // Lưu khi gửi biểu mẫu
             form.addEventListener('submit', () => {
                 this.removeFormData(formId);
             });
 
-            // Auto-save interval
+            // Tự động lưu định kỳ
             if (form.hasAttribute('data-auto-save')) {
                 setInterval(() => {
                     this.saveFormData(form, formId);
-                }, 30000); // Every 30 seconds
+                }, 30000); // Mỗi 30 giây
             }
         });
     },
 
-    // Save form data
+    // Lưu dữ liệu biểu mẫu
     saveFormData: function(form, formId) {
         const formData = new FormData(form);
         const data = {};
@@ -409,10 +411,10 @@ const StorageModule = {
             data[key] = value;
         }
 
-        this.setItem(`form_${formId}`, data, { expires: 24 * 60 * 60 * 1000 }); // 24 hours
+        this.setItem(`form_${formId}`, data, { expires: 24 * 60 * 60 * 1000 }); // 24 giờ
     },
 
-    // Load form data
+    // Tải dữ liệu biểu mẫu
     loadFormData: function(form, formId) {
         const data = this.getItem(`form_${formId}`);
         if (!data) return;
@@ -420,24 +422,26 @@ const StorageModule = {
         Object.keys(data).forEach(key => {
             const field = form.querySelector(`[name="${key}"]`);
             if (field) {
+                // Bỏ qua input file vì không thể set value cho nó
+                if (field.type === 'file') return;
                 if (field.type === 'checkbox' || field.type === 'radio') {
-                    field.checked = field.value === data[key];
+                    field.checked = !!data[key];
                 } else {
                     field.value = data[key];
                 }
             }
         });
 
-        // Show restoration notice
+        // Hiển thị thông báo khôi phục
         this.showFormRestoreNotice(form);
     },
 
-    // Remove form data
+    // Xóa dữ liệu biểu mẫu
     removeFormData: function(formId) {
         this.removeItem(`form_${formId}`);
     },
 
-    // Show form restore notice
+    // Hiển thị thông báo khôi phục dữ liệu biểu mẫu
     showFormRestoreNotice: function(form) {
         const notice = document.createElement('div');
         notice.className = 'form-restore-notice';
@@ -451,25 +455,25 @@ const StorageModule = {
 
         form.insertBefore(notice, form.firstChild);
 
-        // Auto-hide after 5 seconds
+        // Tự động ẩn sau 5 giây
         setTimeout(() => {
             notice.remove();
         }, 5000);
 
-        // Close button
+        // Nút đóng
         notice.querySelector('.notice-close').addEventListener('click', () => {
             notice.remove();
         });
     },
 
-    // Analytics and Usage Tracking
+    // Phân tích và theo dõi sử dụng
     setupAnalytics: function() {
         this.trackPageView();
         this.trackUserSession();
         this.setupInteractionTracking();
     },
 
-    // Track page views
+    // Theo dõi lượt xem trang
     trackPageView: function() {
         const page = window.location.pathname;
         const pageViews = this.getItem('page_views') || {};
@@ -480,30 +484,30 @@ const StorageModule = {
         this.setItem('page_views', pageViews);
     },
 
-    // Track user session
+    // Theo dõi phiên người dùng
     trackUserSession: function() {
         const sessionId = this.getItem('session_id', { session: true });
         
         if (!sessionId) {
-            // New session
+            // Phiên mới
             const newSessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
             this.setItem('session_id', newSessionId, { session: true });
             this.setItem('session_start', Date.now(), { session: true });
             
-            // Track session count
+            // Theo dõi số phiên
             const sessionCount = this.getItem('session_count') || 0;
             this.setItem('session_count', sessionCount + 1);
         }
 
-        // Update last activity
+        // Cập nhật hoạt động cuối
         this.setItem('last_activity', Date.now(), { session: true });
     },
 
-    // Setup interaction tracking
+    // Thiết lập theo dõi tương tác
     setupInteractionTracking: function() {
         const interactions = this.getItem('interactions') || {};
 
-        // Track button clicks
+        // Theo dõi nhấp chuột vào nút
         document.addEventListener('click', (e) => {
             if (e.target.matches('button, .btn, a[href]')) {
                 const element = e.target;
@@ -514,7 +518,7 @@ const StorageModule = {
             }
         });
 
-        // Track form submissions
+        // Theo dõi gửi biểu mẫu
         document.addEventListener('submit', (e) => {
             const form = e.target;
             const formId = form.id || form.action || 'unknown_form';
@@ -524,7 +528,7 @@ const StorageModule = {
         });
     },
 
-    // Get analytics data
+    // Lấy dữ liệu phân tích
     getAnalytics: function() {
         return {
             pageViews: this.getItem('page_views') || {},
@@ -535,22 +539,22 @@ const StorageModule = {
         };
     },
 
-    // Search History Management
+    // Quản lý lịch sử tìm kiếm
     saveSearchQuery: function(query) {
         if (!query.trim()) return;
 
         const searchHistory = this.getItem('search_history') || [];
         
-        // Remove if already exists
+        // Xóa nếu đã tồn tại
         const index = searchHistory.indexOf(query);
         if (index > -1) {
             searchHistory.splice(index, 1);
         }
 
-        // Add to beginning
+        // Thêm vào đầu danh sách
         searchHistory.unshift(query);
 
-        // Keep only last 10 searches
+        // Giữ lại chỉ 10 tìm kiếm gần nhất
         if (searchHistory.length > 10) {
             searchHistory.splice(10);
         }
@@ -558,17 +562,17 @@ const StorageModule = {
         this.setItem('search_history', searchHistory);
     },
 
-    // Get search history
+    // Lấy lịch sử tìm kiếm
     getSearchHistory: function() {
         return this.getItem('search_history') || [];
     },
 
-    // Clear search history
+    // Xóa lịch sử tìm kiếm
     clearSearchHistory: function() {
         this.removeItem('search_history');
     },
 
-    // Shopping Cart / Favorites Management
+    // Quản lý giỏ hàng / danh sách yêu thích
     addToFavorites: function(item) {
         const favorites = this.getItem('favorites') || [];
         
@@ -586,7 +590,7 @@ const StorageModule = {
         }
     },
 
-    // Remove from favorites
+    // Xóa khỏi danh sách yêu thích
     removeFromFavorites: function(itemId) {
         const favorites = this.getItem('favorites') || [];
         const updatedFavorites = favorites.filter(fav => fav.id !== itemId);
@@ -595,12 +599,12 @@ const StorageModule = {
         this.showNotification('Đã xóa khỏi danh sách yêu thích');
     },
 
-    // Get favorites
+    // Lấy danh sách yêu thích
     getFavorites: function() {
         return this.getItem('favorites') || [];
     },
 
-    // Bookmark Management
+    // Quản lý đánh dấu trang
     addBookmark: function(title, url) {
         const bookmarks = this.getItem('bookmarks') || [];
         
@@ -615,7 +619,7 @@ const StorageModule = {
         this.showNotification('Đã thêm bookmark');
     },
 
-    // Export/Import Data
+    // Xuất / Nhập dữ liệu
     exportData: function() {
         const data = {};
         const keys = this.getAllKeys();
@@ -624,7 +628,7 @@ const StorageModule = {
             try {
                 data[key] = localStorage.getItem(key);
             } catch (e) {
-                console.warn(`Failed to export key: ${key}`);
+                console.warn(`Không thể xuất khóa: ${key}`);
             }
         });
 
@@ -639,7 +643,7 @@ const StorageModule = {
         URL.revokeObjectURL(url);
     },
 
-    // Import data
+    // Nhập dữ liệu
     importData: function(file) {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -666,18 +670,18 @@ const StorageModule = {
         });
     },
 
-    // Setup storage events
+    // Thiết lập sự kiện lưu trữ
     setupStorageEvents: function() {
-        // Custom storage events
+        // Sự kiện lưu trữ tùy chỉnh
         this.storageEvents = document.createElement('div');
         
-        // Broadcast storage changes
+        // Phát sóng thay đổi lưu trữ
         this.storageEvents.addEventListener('storage-change', (e) => {
-            console.log('Storage change event:', e.detail);
+            console.log('Sự kiện thay đổi lưu trữ:', e.detail);
         });
     },
 
-    // Trigger storage events
+    // Kích hoạt sự kiện lưu trữ
     triggerStorageEvent: function(action, key, value) {
         const event = new CustomEvent('storage-change', {
             detail: { action, key, value, timestamp: Date.now() }
@@ -686,13 +690,13 @@ const StorageModule = {
         this.storageEvents.dispatchEvent(event);
     },
 
-    // Theme management
+    // Quản lý chủ đề
     applyThemeChanges: function() {
         const theme = this.getItem('theme') || 'light';
         document.body.setAttribute('data-theme', theme);
     },
 
-    // Show notification
+    // Hiển thị thông báo
     showNotification: function(message) {
         if (!this.userPreferences.notifications) return;
 
@@ -714,7 +718,7 @@ const StorageModule = {
         }, 3000);
     },
 
-    // Get storage statistics
+    // Lấy thống kê lưu trữ
     getStorageStats: function() {
         const stats = {
             totalKeys: this.getAllKeys().length,
@@ -728,7 +732,7 @@ const StorageModule = {
         return stats;
     },
 
-    // Format bytes for display
+    // Định dạng byte để hiển thị
     formatBytes: function(bytes) {
         if (bytes === 0) return '0 Bytes';
         
@@ -739,16 +743,16 @@ const StorageModule = {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     },
 
-    // Debug methods
+    // Phương thức gỡ lỗi
     debug: {
-        // List all stored keys
+        // Liệt kê tất cả các khóa đã lưu
         listKeys: function() {
             return StorageModule.getAllKeys().map(key => 
                 key.replace(StorageModule.config.storagePrefix, '')
             );
         },
 
-        // Get item info
+        // Lấy thông tin mục
         getItemInfo: function(key) {
             const fullKey = StorageModule.config.storagePrefix + key;
             const data = localStorage.getItem(fullKey);
@@ -767,11 +771,11 @@ const StorageModule = {
                     version: parsed.version
                 };
             } catch (e) {
-                return { key, error: 'Invalid JSON' };
+                return { key, error: 'JSON không hợp lệ' };
             }
         },
 
-        // View all storage data
+        // Xem tất cả dữ liệu lưu trữ
         viewAll: function() {
             const keys = this.listKeys();
             return keys.map(key => ({
@@ -783,12 +787,12 @@ const StorageModule = {
     }
 };
 
-// Initialize Storage Module when DOM is loaded
+// Khởi tạo Module Lưu trữ khi DOM được tải
 document.addEventListener('DOMContentLoaded', function() {
     StorageModule.init();
 });
 
-// Expose some methods globally for development
+// Tiếp xúc một số phương thức toàn cục cho phát triển
 window.TechVietStorage = {
     get: (key) => StorageModule.getItem(key),
     set: (key, value, options) => StorageModule.setItem(key, value, options),
@@ -799,7 +803,7 @@ window.TechVietStorage = {
     debug: StorageModule.debug
 };
 
-// Export for module systems
+// Xuất cho các hệ thống module
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = StorageModule;
 }

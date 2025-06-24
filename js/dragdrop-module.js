@@ -1,13 +1,13 @@
 /**
- * TechViet - Drag & Drop Module
- * Implements HTML5 Drag & Drop API for file uploads and interactive elements
- * Provides seamless file handling and content organization features
+ * TechViet - Module Kéo & Thả
+ * Triển khai API Drag & Drop HTML5 cho upload file và các phần tử tương tác
+ * Cung cấp tính năng xử lý file và tổ chức nội dung mượt mà
  */
 
 'use strict';
 
 const DragDropModule = {
-    // Configuration
+    // Cấu hình
     config: {
         maxFileSize: 10 * 1024 * 1024, // 10MB
         allowedTypes: {
@@ -17,12 +17,12 @@ const DragDropModule = {
             presentations: ['ppt', 'pptx'],
             archives: ['zip', 'rar', '7z']
         },
-        uploadChunkSize: 1024 * 1024, // 1MB chunks for large files
-        previewImageSize: 150, // pixels
+        uploadChunkSize: 1024 * 1024, // Chia nhỏ file 1MB cho file lớn
+        previewImageSize: 150, // pixel
         animationDuration: 300
     },
 
-    // File upload state
+    // Trạng thái upload file
     uploadState: {
         activeUploads: new Map(),
         uploadQueue: [],
@@ -30,9 +30,9 @@ const DragDropModule = {
         isUploading: false
     },
 
-    // Initialize drag and drop functionality
+    // Khởi tạo chức năng kéo & thả
     init: function() {
-        console.log('Initializing Drag & Drop Module...');
+        console.log('Đang khởi tạo Module Kéo & Thả...');
         
         this.setupFileUploadAreas();
         this.setupDragDropInteractions();
@@ -41,10 +41,10 @@ const DragDropModule = {
         this.preventDefaultDragBehavior();
         this.setupAccessibility();
         
-        console.log('Drag & Drop Module initialized successfully');
+        console.log('Module Kéo & Thả đã được khởi tạo thành công');
     },
 
-    // Setup file upload areas
+    // Thiết lập khu vực upload file
     setupFileUploadAreas: function() {
         const uploadAreas = document.querySelectorAll('.upload-area, .file-upload-area, #uploadArea, #fileUploadArea');
         
@@ -52,29 +52,29 @@ const DragDropModule = {
             this.initializeUploadArea(area);
         });
 
-        // Setup file input triggers
+        // Thiết lập kích hoạt input file
         const fileInputs = document.querySelectorAll('input[type="file"]');
         fileInputs.forEach(input => {
             this.setupFileInput(input);
         });
     },
 
-    // Initialize individual upload area
+    // Khởi tạo khu vực upload cá nhân
     initializeUploadArea: function(area) {
         if (area.dataset.initialized) return;
         area.dataset.initialized = 'true';
 
-        // Get associated file input
+        // Lấy input file liên kết
         const fileInput = area.querySelector('input[type="file"]') || 
                          document.getElementById(area.dataset.fileInput);
 
-        // Drag events
+        // Sự kiện kéo
         area.addEventListener('dragenter', (e) => this.handleDragEnter(e, area));
         area.addEventListener('dragover', (e) => this.handleDragOver(e, area));
         area.addEventListener('dragleave', (e) => this.handleDragLeave(e, area));
         area.addEventListener('drop', (e) => this.handleDrop(e, area, fileInput));
 
-        // Click to select files
+        // Nhấp để chọn file
         area.addEventListener('click', (e) => {
             if (e.target === area || e.target.closest('.upload-content')) {
                 if (fileInput) {
@@ -83,7 +83,7 @@ const DragDropModule = {
             }
         });
 
-        // Keyboard accessibility
+        // Truy cập bằng bàn phím
         area.setAttribute('tabindex', '0');
         area.setAttribute('role', 'button');
         area.setAttribute('aria-label', 'Khu vực upload file - nhấn Enter để chọn file hoặc kéo thả file vào đây');
@@ -97,11 +97,11 @@ const DragDropModule = {
             }
         });
 
-        // Setup drop zone styling
+        // Thiết lập kiểu dáng khu vực thả
         this.setupDropZoneStyling(area);
     },
 
-    // Setup file input handlers
+    // Thiết lập trình xử lý input file
     setupFileInput: function(input) {
         input.addEventListener('change', (e) => {
             const files = Array.from(e.target.files);
@@ -112,7 +112,7 @@ const DragDropModule = {
         });
     },
 
-    // Handle drag enter
+    // Xử lý khi kéo vào
     handleDragEnter: function(e, area) {
         e.preventDefault();
         e.stopPropagation();
@@ -120,35 +120,35 @@ const DragDropModule = {
         area.classList.add('dragover');
         this.showDropIndicator(area);
         
-        // Announce to screen readers
+        // Thông báo cho trình đọc màn hình
         this.announceToScreenReader('File đang được kéo vào khu vực upload');
     },
 
-    // Handle drag over
+    // Xử lý khi kéo qua
     handleDragOver: function(e, area) {
         e.preventDefault();
         e.stopPropagation();
         
-        // Set drop effect
+        // Thiết lập hiệu ứng thả
         e.dataTransfer.dropEffect = 'copy';
         
-        // Update visual feedback
+        // Cập nhật phản hồi hình ảnh
         area.classList.add('dragover');
     },
 
-    // Handle drag leave
+    // Xử lý khi rời khỏi
     handleDragLeave: function(e, area) {
         e.preventDefault();
         e.stopPropagation();
         
-        // Only remove dragover if we're leaving the drop zone completely
+        // Chỉ loại bỏ dragover nếu chúng ta rời khỏi vùng thả hoàn toàn
         if (!area.contains(e.relatedTarget)) {
             area.classList.remove('dragover');
             this.hideDropIndicator(area);
         }
     },
 
-    // Handle file drop
+    // Xử lý khi thả file
     handleDrop: function(e, area, fileInput) {
         e.preventDefault();
         e.stopPropagation();
@@ -163,7 +163,7 @@ const DragDropModule = {
             return;
         }
         
-        // Validate file count if input has multiple attribute
+        // Xác thực số lượng file nếu input có thuộc tính multiple
         if (fileInput && !fileInput.multiple && files.length > 1) {
             this.showErrorMessage(area, 'Chỉ được chọn một file');
             return;
@@ -173,7 +173,7 @@ const DragDropModule = {
         this.announceToScreenReader(`Đã nhận ${files.length} file`);
     },
 
-    // Process uploaded files
+    // Xử lý các file đã upload
     processFiles: function(files, uploadArea) {
         const validFiles = [];
         const invalidFiles = [];
@@ -187,21 +187,21 @@ const DragDropModule = {
             }
         });
         
-        // Show validation errors
+        // Hiển thị lỗi xác thực
         if (invalidFiles.length > 0) {
             this.showValidationErrors(invalidFiles, uploadArea);
         }
         
-        // Process valid files
+        // Xử lý các file hợp lệ
         if (validFiles.length > 0) {
             this.displayFileList(validFiles, uploadArea);
             this.uploadFiles(validFiles, uploadArea);
         }
     },
 
-    // Validate individual file
+    // Xác thực từng file
     validateFile: function(file) {
-        // Check file size
+        // Kiểm tra kích thước file
         if (file.size > this.config.maxFileSize) {
             return {
                 valid: false,
@@ -209,7 +209,7 @@ const DragDropModule = {
             };
         }
         
-        // Check file type
+        // Kiểm tra loại file
         const fileExtension = file.name.split('.').pop().toLowerCase();
         const allowedExtensions = Object.values(this.config.allowedTypes).flat();
         
@@ -223,7 +223,7 @@ const DragDropModule = {
         return { valid: true };
     },
 
-    // Display file list in upload area
+    // Hiển thị danh sách file trong khu vực upload
     displayFileList: function(files, uploadArea) {
         let fileList = uploadArea.querySelector('.file-list, .upload-list, #fileList, #uploadList');
         
@@ -237,14 +237,14 @@ const DragDropModule = {
             const fileItem = this.createFileItem(file, index);
             fileList.appendChild(fileItem);
             
-            // Animate file item appearance
+            // Hiệu ứng xuất hiện cho mục file
             setTimeout(() => {
                 fileItem.classList.add('show');
             }, index * 100);
         });
     },
 
-    // Create file item element
+    // Tạo phần tử mục file
     createFileItem: function(file, index) {
         const fileItem = document.createElement('div');
         fileItem.className = 'file-item';
@@ -278,13 +278,13 @@ const DragDropModule = {
             </div>
         `;
         
-        // Setup remove button
+        // Thiết lập nút xóa
         const removeBtn = fileItem.querySelector('.file-remove');
         removeBtn.addEventListener('click', () => {
             this.removeFile(fileItem, file);
         });
         
-        // Add preview for images
+        // Thêm xem trước cho hình ảnh
         if (this.isImageFile(file)) {
             this.addImagePreview(fileItem, file);
         }
@@ -292,7 +292,7 @@ const DragDropModule = {
         return fileItem;
     },
 
-    // Get file type icon
+    // Lấy biểu tượng loại file
     getFileIcon: function(file) {
         const extension = file.name.split('.').pop().toLowerCase();
         
@@ -320,12 +320,12 @@ const DragDropModule = {
         return '<i class="fas fa-file"></i>';
     },
 
-    // Check if file is an image
+    // Kiểm tra xem file có phải là hình ảnh không
     isImageFile: function(file) {
         return file.type.startsWith('image/');
     },
 
-    // Add image preview
+    // Thêm xem trước hình ảnh
     addImagePreview: function(fileItem, file) {
         const fileIcon = fileItem.querySelector('.file-icon');
         
@@ -348,7 +348,7 @@ const DragDropModule = {
         reader.readAsDataURL(file);
     },
 
-    // Upload files
+    // Upload file
     uploadFiles: function(files, uploadArea) {
         files.forEach((file, index) => {
             const fileId = `file_${Date.now()}_${index}`;
@@ -359,7 +359,7 @@ const DragDropModule = {
                 status: 'uploading'
             });
             
-            // Start upload simulation (replace with actual upload logic)
+            // Bắt đầu mô phỏng upload (thay thế bằng logic upload thực tế)
             this.simulateFileUpload(fileId, file);
         });
         
@@ -367,7 +367,7 @@ const DragDropModule = {
         this.updateOverallProgress();
     },
 
-    // Simulate file upload (replace with actual upload implementation)
+    // Mô phỏng upload file (thay thế bằng triển khai upload thực tế)
     simulateFileUpload: function(fileId, file) {
         const upload = this.uploadState.activeUploads.get(fileId);
         if (!upload) return;
@@ -389,17 +389,17 @@ const DragDropModule = {
                 progress = 100;
                 clearInterval(uploadInterval);
                 
-                // Mark as completed
+                // Đánh dấu là đã hoàn thành
                 upload.progress = 100;
                 upload.status = 'completed';
                 
                 fileStatus.textContent = 'Hoàn thành';
                 fileItem.classList.add('completed');
                 
-                // Remove from active uploads
+                // Xóa khỏi danh sách upload đang hoạt động
                 this.uploadState.activeUploads.delete(fileId);
                 
-                // Check if all uploads are complete
+                // Kiểm tra xem tất cả các upload đã hoàn thành chưa
                 if (this.uploadState.activeUploads.size === 0) {
                     this.uploadState.isUploading = false;
                     this.onAllUploadsComplete(upload.uploadArea);
@@ -408,7 +408,7 @@ const DragDropModule = {
                 this.announceToScreenReader(`Upload file "${file.name}" hoàn thành`);
             }
             
-            // Update progress display
+            // Cập nhật hiển thị tiến độ
             progressFill.style.width = `${progress}%`;
             progressText.textContent = `${Math.round(progress)}%`;
             upload.progress = progress;
@@ -416,11 +416,11 @@ const DragDropModule = {
             this.updateOverallProgress();
         }, 100 + Math.random() * 200);
         
-        // Store interval for potential cancellation
+        // Lưu interval để có thể hủy nếu cần
         upload.interval = uploadInterval;
     },
 
-    // Update overall progress
+    // Cập nhật tiến độ tổng thể
     updateOverallProgress: function() {
         if (this.uploadState.activeUploads.size === 0) {
             this.uploadState.totalProgress = 0;
@@ -434,36 +434,36 @@ const DragDropModule = {
         
         this.uploadState.totalProgress = totalProgress / this.uploadState.activeUploads.size;
         
-        // Update global progress indicator if exists
+        // Cập nhật chỉ báo tiến độ toàn cục nếu có
         const globalProgress = document.querySelector('.global-upload-progress');
         if (globalProgress) {
             globalProgress.style.width = `${this.uploadState.totalProgress}%`;
         }
     },
 
-    // Handle upload completion
+    // Xử lý khi hoàn thành upload
     onAllUploadsComplete: function(uploadArea) {
         this.showSuccessMessage(uploadArea, 'Tất cả file đã được upload thành công!');
         
-        // Trigger custom event
+        // Kích hoạt sự kiện tùy chỉnh
         const event = new CustomEvent('uploadComplete', {
             detail: { uploadArea: uploadArea }
         });
         document.dispatchEvent(event);
     },
 
-    // Remove file
+    // Xóa file
     removeFile: function(fileItem, file) {
         const fileId = fileItem.dataset.fileId;
         
-        // Cancel upload if in progress
+        // Hủy upload nếu đang tiến hành
         const upload = this.uploadState.activeUploads.get(fileId);
         if (upload && upload.interval) {
             clearInterval(upload.interval);
             this.uploadState.activeUploads.delete(fileId);
         }
         
-        // Animate removal
+        // Hiệu ứng xóa
         fileItem.classList.add('removing');
         setTimeout(() => {
             fileItem.remove();
@@ -472,13 +472,13 @@ const DragDropModule = {
         this.announceToScreenReader(`Đã xóa file "${file.name}"`);
     },
 
-    // Setup drag and drop for other interactive elements
+    // Thiết lập kéo và thả cho các phần tử tương tác khác
     setupDragDropInteractions: function() {
         this.setupSortableLists();
         this.setupDraggableCards();
     },
 
-    // Setup sortable lists
+    // Thiết lập danh sách có thể sắp xếp
     setupSortableLists: function() {
         const sortableLists = document.querySelectorAll('[data-sortable]');
         
@@ -487,7 +487,7 @@ const DragDropModule = {
         });
     },
 
-    // Initialize sortable list
+    // Khởi tạo danh sách có thể sắp xếp
     initializeSortableList: function(list) {
         const items = list.querySelectorAll('[data-draggable]');
         
@@ -503,31 +503,31 @@ const DragDropModule = {
         list.addEventListener('drop', (e) => this.handleListDrop(e, list));
     },
 
-    // Handle item drag start
+    // Xử lý bắt đầu kéo mục
     handleItemDragStart: function(e, item) {
         item.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('text/html', item.outerHTML);
         e.dataTransfer.setData('text/plain', item.dataset.id || item.textContent);
         
-        // Create drag image
+        // Tạo hình ảnh kéo
         const dragImage = item.cloneNode(true);
         dragImage.style.transform = 'rotate(5deg)';
         dragImage.style.opacity = '0.8';
         e.dataTransfer.setDragImage(dragImage, 0, 0);
     },
 
-    // Handle item drag end
+    // Xử lý kết thúc kéo mục
     handleItemDragEnd: function(e, item) {
         item.classList.remove('dragging');
         
-        // Remove any drop indicators
+        // Loại bỏ bất kỳ chỉ báo thả nào
         document.querySelectorAll('.drop-indicator').forEach(indicator => {
             indicator.remove();
         });
     },
 
-    // Handle list drag over
+    // Xử lý kéo qua danh sách
     handleListDragOver: function(e, list) {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
@@ -544,11 +544,11 @@ const DragDropModule = {
         }
     },
 
-    // Handle list drop
+    // Xử lý thả vào danh sách
     handleListDrop: function(e, list) {
         e.preventDefault();
         
-        // Trigger reorder event
+        // Kích hoạt sự kiện thay đổi thứ tự
         const event = new CustomEvent('itemReorder', {
             detail: { 
                 list: list,
@@ -560,7 +560,7 @@ const DragDropModule = {
         this.announceToScreenReader('Thứ tự danh sách đã được thay đổi');
     },
 
-    // Get drag after element
+    // Lấy phần tử để kéo sau
     getDragAfterElement: function(container, y) {
         const draggableElements = [...container.querySelectorAll('[data-draggable]:not(.dragging)')];
         
@@ -576,13 +576,13 @@ const DragDropModule = {
         }, { offset: Number.NEGATIVE_INFINITY }).element;
     },
 
-    // Get list order
+    // Lấy thứ tự danh sách
     getListOrder: function(list) {
         const items = list.querySelectorAll('[data-draggable]');
         return Array.from(items).map(item => item.dataset.id || item.textContent.trim());
     },
 
-    // Setup draggable cards
+    // Thiết lập thẻ có thể kéo
     setupDraggableCards: function() {
         const draggableCards = document.querySelectorAll('.draggable-card, [data-card-draggable]');
         
@@ -592,7 +592,7 @@ const DragDropModule = {
             card.addEventListener('dragend', (e) => this.handleCardDragEnd(e, card));
         });
         
-        // Setup drop zones for cards
+        // Thiết lập vùng thả cho thẻ
         const dropZones = document.querySelectorAll('.card-drop-zone, [data-card-drop-zone]');
         dropZones.forEach(zone => {
             zone.addEventListener('dragover', (e) => this.handleCardDragOver(e, zone));
@@ -600,7 +600,7 @@ const DragDropModule = {
         });
     },
 
-    // Handle card drag start
+    // Xử lý bắt đầu kéo thẻ
     handleCardDragStart: function(e, card) {
         card.classList.add('card-dragging');
         e.dataTransfer.effectAllowed = 'move';
@@ -611,19 +611,19 @@ const DragDropModule = {
         }));
     },
 
-    // Handle card drag end
+    // Xử lý kết thúc kéo thẻ
     handleCardDragEnd: function(e, card) {
         card.classList.remove('card-dragging');
     },
 
-    // Handle card drag over
+    // Xử lý kéo qua vùng thả thẻ
     handleCardDragOver: function(e, zone) {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
         zone.classList.add('drop-zone-active');
     },
 
-    // Handle card drop
+    // Xử lý thả thẻ
     handleCardDrop: function(e, zone) {
         e.preventDefault();
         zone.classList.remove('drop-zone-active');
@@ -637,7 +637,7 @@ const DragDropModule = {
                 if (card && zone !== sourceZone) {
                     zone.appendChild(card);
                     
-                    // Trigger card move event
+                    // Kích hoạt sự kiện di chuyển thẻ
                     const event = new CustomEvent('cardMove', {
                         detail: {
                             cardId: data.id,
@@ -651,11 +651,11 @@ const DragDropModule = {
                 }
             }
         } catch (error) {
-            console.error('Error processing card drop:', error);
+            console.error('Lỗi khi xử lý thả thẻ:', error);
         }
     },
 
-    // Setup file preview functionality
+    // Thiết lập chức năng xem trước file
     setupFilePreview: function() {
         document.addEventListener('click', (e) => {
             if (e.target.closest('.file-item')) {
@@ -669,13 +669,13 @@ const DragDropModule = {
         });
     },
 
-    // Check if file is previewable
+    // Kiểm tra xem file có thể xem trước được không
     isPreviewableFile: function(fileName) {
         const extension = fileName.split('.').pop().toLowerCase();
         return ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'pdf', 'txt'].includes(extension);
     },
 
-    // Show file preview modal
+    // Hiển thị modal xem trước file
     showFilePreview: function(fileItem) {
         const fileName = fileItem.querySelector('.file-name').textContent;
         const fileIcon = fileItem.querySelector('.file-icon img');
@@ -706,14 +706,14 @@ const DragDropModule = {
         
         document.body.appendChild(modal);
         
-        // Close handlers
+        // Xử lý đóng modal
         modal.querySelectorAll('.modal-close, .modal-backdrop').forEach(element => {
             element.addEventListener('click', () => {
                 modal.remove();
             });
         });
         
-        // ESC key
+        // Phím ESC
         const escHandler = (e) => {
             if (e.key === 'Escape') {
                 modal.remove();
@@ -722,19 +722,19 @@ const DragDropModule = {
         };
         document.addEventListener('keydown', escHandler);
         
-        // Focus management
+        // Quản lý tiêu điểm
         const closeBtn = modal.querySelector('.modal-close');
         closeBtn.focus();
     },
 
-    // Setup progress tracking
+    // Thiết lập theo dõi tiến độ
     setupProgressTracking: function() {
-        // Create global progress indicator
+        // Tạo chỉ báo tiến độ toàn cục
         const progressContainer = document.createElement('div');
         progressContainer.className = 'global-upload-progress-container';
         progressContainer.innerHTML = `
             <div class="upload-status">
-                <span class="upload-text">Uploading files...</span>
+                <span class="upload-text">Đang tải lên các file...</span>
                 <div class="global-upload-progress"></div>
             </div>
         `;
@@ -753,7 +753,7 @@ const DragDropModule = {
         
         document.body.appendChild(progressContainer);
         
-        // Show/hide based on upload state
+        // Hiển thị/ẩn dựa trên trạng thái upload
         setInterval(() => {
             if (this.uploadState.isUploading) {
                 progressContainer.style.display = 'block';
@@ -763,12 +763,12 @@ const DragDropModule = {
         }, 100);
     },
 
-    // Prevent default drag behavior on document
+    // Ngăn chặn hành vi kéo mặc định trên tài liệu
     preventDefaultDragBehavior: function() {
-        // Prevent default drag behavior on the entire document
+        // Ngăn chặn hành vi kéo mặc định trên toàn bộ tài liệu
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             document.addEventListener(eventName, (e) => {
-                // Only prevent default if not in a designated drop zone
+                // Chỉ ngăn chặn mặc định nếu không ở trong vùng thả được chỉ định
                 if (!e.target.closest('.upload-area, .file-upload-area, [data-sortable], .card-drop-zone')) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -777,9 +777,9 @@ const DragDropModule = {
         });
     },
 
-    // Setup accessibility features
+    // Thiết lập tính năng truy cập
     setupAccessibility: function() {
-        // Add ARIA labels and roles
+        // Thêm nhãn và vai trò ARIA
         const uploadAreas = document.querySelectorAll('.upload-area, .file-upload-area');
         uploadAreas.forEach(area => {
             if (!area.hasAttribute('aria-label')) {
@@ -791,7 +791,7 @@ const DragDropModule = {
             }
         });
         
-        // Add keyboard navigation for file items
+        // Thêm điều hướng bằng bàn phím cho các mục file
         document.addEventListener('keydown', (e) => {
             if (e.target.classList.contains('file-item')) {
                 if (e.key === 'Delete' || e.key === 'Backspace') {
@@ -805,7 +805,7 @@ const DragDropModule = {
         });
     },
 
-    // Show/hide drop indicator
+    // Hiển thị/ẩn chỉ báo thả
     showDropIndicator: function(area) {
         if (area.querySelector('.drop-indicator')) return;
         
@@ -828,15 +828,15 @@ const DragDropModule = {
         }
     },
 
-    // Setup drop zone styling
+    // Thiết lập kiểu dáng khu vực thả
     setupDropZoneStyling: function(area) {
         if (area.dataset.styled) return;
         area.dataset.styled = 'true';
         
-        // Add CSS classes for styling
+        // Thêm lớp CSS cho kiểu dáng
         area.classList.add('drop-zone');
         
-        // Add styles if not already present
+        // Thêm kiểu dáng nếu chưa có
         if (!document.getElementById('dragdrop-styles')) {
             const styles = document.createElement('style');
             styles.id = 'dragdrop-styles';
@@ -1090,7 +1090,7 @@ const DragDropModule = {
         }
     },
 
-    // Utility functions
+    // Hàm tiện ích
     formatFileSize: function(bytes) {
         if (bytes === 0) return '0 Bytes';
         
@@ -1101,23 +1101,23 @@ const DragDropModule = {
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     },
 
-    // Show error message
+    // Hiển thị thông báo lỗi
     showErrorMessage: function(area, message) {
         this.showMessage(area, message, 'error');
     },
 
-    // Show success message
+    // Hiển thị thông báo thành công
     showSuccessMessage: function(area, message) {
         this.showMessage(area, message, 'success');
     },
 
-    // Show validation errors
+    // Hiển thị lỗi xác thực
     showValidationErrors: function(invalidFiles, area) {
         const errorMessages = invalidFiles.map(item => item.error).join('\n');
         this.showErrorMessage(area, errorMessages);
     },
 
-    // Generic message display
+    // Hiển thị thông báo chung
     showMessage: function(area, message, type = 'info') {
         const messageElement = document.createElement('div');
         messageElement.className = `upload-message upload-message-${type}`;
@@ -1135,13 +1135,13 @@ const DragDropModule = {
         
         area.appendChild(messageElement);
         
-        // Auto remove after 5 seconds
+        // Tự động xóa sau 5 giây
         setTimeout(() => {
             messageElement.remove();
         }, 5000);
     },
 
-    // Announce to screen readers
+    // Thông báo cho trình đọc màn hình
     announceToScreenReader: function(message) {
         const announcement = document.createElement('div');
         announcement.setAttribute('aria-live', 'polite');
@@ -1156,9 +1156,9 @@ const DragDropModule = {
         }, 1000);
     },
 
-    // Public API methods
+    // Phương thức API công khai
     api: {
-        // Add files programmatically
+        // Thêm file bằng chương trình
         addFiles: function(files, uploadAreaSelector) {
             const uploadArea = document.querySelector(uploadAreaSelector);
             if (uploadArea && files.length > 0) {
@@ -1166,7 +1166,7 @@ const DragDropModule = {
             }
         },
 
-        // Get upload status
+        // Lấy trạng thái upload
         getUploadStatus: function() {
             return {
                 isUploading: DragDropModule.uploadState.isUploading,
@@ -1175,7 +1175,7 @@ const DragDropModule = {
             };
         },
 
-        // Cancel all uploads
+        // Hủy tất cả các upload
         cancelAllUploads: function() {
             DragDropModule.uploadState.activeUploads.forEach((upload, fileId) => {
                 if (upload.interval) {
@@ -1186,22 +1186,22 @@ const DragDropModule = {
             DragDropModule.uploadState.isUploading = false;
         },
 
-        // Configure module
+        // Cấu hình module
         configure: function(options) {
             Object.assign(DragDropModule.config, options);
         }
     }
 };
 
-// Initialize Drag & Drop Module when DOM is loaded
+// Khởi tạo Module Kéo & Thả khi DOM được tải
 document.addEventListener('DOMContentLoaded', function() {
     DragDropModule.init();
 });
 
-// Global API exposure
+// Phơi bày API toàn cầu
 window.TechVietDragDrop = DragDropModule.api;
 
-// Export for module systems
+// Xuất cho các hệ thống module
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = DragDropModule;
 }
